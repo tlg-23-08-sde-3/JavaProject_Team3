@@ -2,9 +2,9 @@ package com.spincity.roulette.bet;
 
 import com.spincity.roulette.BettingCategory;
 
-public class WinLossFactory {
+public class BettingFactory {
 
-    public static WinLoss getWinLossStrategy(BettingCategory bettingCategory) {
+    public static BetCalculator getWinLossStrategy(BettingCategory bettingCategory) {
        switch (bettingCategory) {
            case COLOR:
                return new ColorBet();

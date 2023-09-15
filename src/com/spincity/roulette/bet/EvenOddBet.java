@@ -1,5 +1,5 @@
 package com.spincity.roulette.bet;
 
-class EvenOddBet implements WinLoss{
+class EvenOddBet implements BetCalculator {
 
 }

@@ -1,38 +1,34 @@
 package com.spincity.roulette;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public enum SpinnerNumber {
-    ONE(1, BasketOption.BASKET_1_TO_12, EvenOddOption.ODD, ColorOption.RED),
-    TWO(2, BasketOption.BASKET_1_TO_12, EvenOddOption.EVEN, ColorOption.BLACK);
+    ONE(1, BettingCategory.Dozen.DOZEN_1_TO_12, BettingCategory.EvenOdd.ODD, BettingCategory.Color.RED),
+    TWO(2, BettingCategory.Dozen.DOZEN_1_TO_12, BettingCategory.EvenOdd.EVEN, BettingCategory.Color.BLACK);
 
     private int number;
-    private BasketOption basketOption;
-    private EvenOddOption evenOddOption;
-    private ColorOption colorOption;
+    private BettingCategory.Dozen dozen;
+    private BettingCategory.EvenOdd evenOddOption;
+    private BettingCategory.Color color;
 
-    SpinnerNumber(int number, BasketOption basketOption, EvenOddOption evenOddOption, ColorOption colorOption) {
+    SpinnerNumber(int number, BettingCategory.Dozen basketOption, BettingCategory.EvenOdd evenOddOption, BettingCategory.Color color) {
         this.number = number;
-        this.basketOption = basketOption;
+        this.dozen = basketOption;
         this.evenOddOption = evenOddOption;
-        this.colorOption = colorOption;
+        this.color = color;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public BasketOption getBasketOption() {
-        return basketOption;
+    public BettingCategory.Dozen getDozen() {
+        return dozen;
     }
 
-    public EvenOddOption getEvenOddOption() {
+    public BettingCategory.EvenOdd getEvenOddOption() {
         return evenOddOption;
     }
 
-    public ColorOption getColorOption() {
-        return colorOption;
+    public BettingCategory.Color getColorOption() {
+        return color;
     }
 }
