@@ -4,7 +4,7 @@ import com.spincity.roulette.BettingCategory;
 
 public class BettingFactory {
 
-    public static BetCalculator getWinLossStrategy(BettingCategory bettingCategory) {
+    public static BetCalculator bettingStrategy(BettingCategory bettingCategory) {
        switch (bettingCategory) {
            case COLOR:
                return new ColorBet();

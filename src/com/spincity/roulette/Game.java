@@ -31,7 +31,7 @@ public class Game {
         Spinner spinner = new Spinner();
         SpinnerNumber pickedNumber = spinner.spin();
 
-        BetCalculator betCalculatorCalculator = BettingFactory.getWinLossStrategy(bettingCategory);
+        BetCalculator betCalculatorCalculator = BettingFactory.bettingStrategy(bettingCategory);
         double winAmount = betCalculatorCalculator.calculateWinLoss(pickedNumber, colorOption);
 
         if (winAmount == 0.0) {
