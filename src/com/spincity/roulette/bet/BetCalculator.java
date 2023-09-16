@@ -1,6 +1,6 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.BettingCategory;
+import com.spincity.roulette.Bet;
 import com.spincity.roulette.SpinnerNumber;
 
 public interface BetCalculator {
@@ -8,15 +8,15 @@ public interface BetCalculator {
         return 0.0;
     };
 
-        default public  double calculateWinLoss(SpinnerNumber spinnerNumber, BettingCategory.Dozen dozenOption) {
+        default public  double calculateWinLoss(SpinnerNumber spinnerNumber, Bet.Dozen dozenOption) {
         return 0.0;
     }
 
-    default  public double calculateWinLoss(SpinnerNumber spinnerNumber, BettingCategory.EvenOdd evenOddOption) {
+    default  public double calculateWinLoss(SpinnerNumber spinnerNumber, Bet.EvenOdd evenOddOption) {
         return 0.0;
     }
 
-    default  public double calculateWinLoss(SpinnerNumber spinnerNumber, BettingCategory.Color colorOption) {
+    default  public double calculateWinLoss(SpinnerNumber spinnerNumber, Bet.Color colorOption) {
         return 0.0;
     }
 

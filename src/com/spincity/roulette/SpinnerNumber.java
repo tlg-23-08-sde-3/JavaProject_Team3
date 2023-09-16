@@ -1,17 +1,56 @@
 package com.spincity.roulette;
 
+import static com.spincity.roulette.Bet.EvenOdd.*;
+import static com.spincity.roulette.Bet.Dozen.*;
+import static com.spincity.roulette.Bet.Color.*;
+
 public enum SpinnerNumber {
-    ONE(1, BettingCategory.Dozen.DOZEN_1_TO_12, BettingCategory.EvenOdd.ODD, BettingCategory.Color.RED),
-    TWO(2, BettingCategory.Dozen.DOZEN_1_TO_12, BettingCategory.EvenOdd.EVEN, BettingCategory.Color.BLACK);
+    ZERO(0, NO_GROUP, NOT_EVEN_ODD, NO_COLOR),
+    ONE(1, DOZEN_1_TO_12, ODD, RED),
+    TWO(2, DOZEN_1_TO_12, EVEN, BLACK),
+    THREE(3, DOZEN_1_TO_12, ODD, RED),
+    FOUR(4, DOZEN_1_TO_12, EVEN, BLACK),
+    FIVE(5, DOZEN_1_TO_12, ODD, RED),
+    SIX(6, DOZEN_1_TO_12, EVEN, BLACK),
+    SEVEN(7, DOZEN_1_TO_12, ODD, RED),
+    EIGHT(8, DOZEN_1_TO_12, EVEN, BLACK),
+    NINE(9, DOZEN_1_TO_12, ODD, RED),
+    TEN(10, DOZEN_1_TO_12, EVEN, BLACK),
+    ELEVEN(11, DOZEN_1_TO_12, ODD, BLACK),
+    TWELVE(12, DOZEN_1_TO_12, EVEN, RED),
+    THIRTEEN(13, DOZEN_13_TO_24, ODD, BLACK),
+    FOURTEEN(14, DOZEN_13_TO_24, EVEN, RED),
+    FIFTEEN(15, DOZEN_13_TO_24, ODD, BLACK),
+    SIXTEEN(16, DOZEN_13_TO_24, EVEN, RED),
+    SEVENTEEN(17, DOZEN_13_TO_24, ODD, BLACK),
+    EIGHTEEN(18, DOZEN_13_TO_24, EVEN, RED),
+    NINETEEN(19, DOZEN_13_TO_24, ODD, RED),
+    TWENTY(20, DOZEN_13_TO_24, EVEN, BLACK),
+    TWENTY_ONE(21, DOZEN_13_TO_24, ODD, RED),
+    TWENTY_TWO(22, DOZEN_13_TO_24, EVEN, BLACK),
+    TWENTY_THREE(23, DOZEN_13_TO_24, ODD, RED),
+    TWENTY_FOUR(24, DOZEN_13_TO_24, EVEN, BLACK),
+    TWENTY_FIVE(25, DOZEN_25_TO_36, ODD, RED),
+    TWENTY_SIX(26, DOZEN_25_TO_36, EVEN, BLACK),
+    TWENTY_SEVEN(27, DOZEN_25_TO_36, ODD, RED),
+    TWENTY_EIGHT(28, DOZEN_25_TO_36, EVEN, BLACK),
+    TWENTY_NINE(29, DOZEN_25_TO_36, ODD, BLACK),
+    THIRTY(30, DOZEN_25_TO_36, EVEN, RED),
+    THIRTY_ONE(31, DOZEN_25_TO_36, ODD, BLACK),
+    THIRTY_TWO(32, DOZEN_25_TO_36, EVEN, RED),
+    THIRTY_THREE(33, DOZEN_25_TO_36, ODD, BLACK),
+    THIRTY_FOUR(34, DOZEN_25_TO_36, EVEN, RED),
+    THIRTY_FIVE(35, DOZEN_25_TO_36, ODD, BLACK),
+    THIRTY_SIX(36, DOZEN_25_TO_36, EVEN, RED);
 
-    private int number;
-    private BettingCategory.Dozen dozen;
-    private BettingCategory.EvenOdd evenOddOption;
-    private BettingCategory.Color color;
+    private final int number;
+    private final Bet.Dozen dozen;
+    private final Bet.EvenOdd evenOddOption;
+    private final Bet.Color color;
 
-    SpinnerNumber(int number, BettingCategory.Dozen basketOption, BettingCategory.EvenOdd evenOddOption, BettingCategory.Color color) {
+    SpinnerNumber(int number, Bet.Dozen dozen, Bet.EvenOdd evenOddOption, Bet.Color color) {
         this.number = number;
-        this.dozen = basketOption;
+        this.dozen = dozen;
         this.evenOddOption = evenOddOption;
         this.color = color;
     }
@@ -20,15 +59,15 @@ public enum SpinnerNumber {
         return number;
     }
 
-    public BettingCategory.Dozen getDozen() {
+    public Bet.Dozen getDozen() {
         return dozen;
     }
 
-    public BettingCategory.EvenOdd getEvenOddOption() {
+    public Bet.EvenOdd getEvenOddOption() {
         return evenOddOption;
     }
 
-    public BettingCategory.Color getColorOption() {
+    public Bet.Color getColorOption() {
         return color;
     }
 }
