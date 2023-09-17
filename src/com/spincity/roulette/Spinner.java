@@ -18,13 +18,13 @@ interface SpinCompletionCallback {
 }
 
 public class Spinner extends JPanel implements ActionListener {
-    private static final String IMAGE_PREFIX = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\Spinner\\\\Roulette-"; // Roulette wheel images filename prefix
-    private static final String WAV_FILE = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\Spinner\\\\wheel.wav"; // Wheel Sound file (WAV format)
+    private static final String IMAGE_PREFIX = "./images/Spinner/Roulette-"; // Roulette wheel images filename prefix
+    private static final String WAV_FILE = "./images/Spinner/wheel.wav "; // Wheel Sound file (WAV format)
     private static final int NUM_IMAGES = 37; // Number of total images that makes the wheel spin
     private static final int INITIAL_ANIMATION_DELAY = 50; // Initial milliseconds per image
     private static final int MAX_INCREASE_DELAY = 250; // Maximum additional delay per second
     private static final int SPIN_DURATION = 12500; // 12.5 seconds (to match the sound file length)
-    private static final int EXIT_DELAY = 3000; // show the winning number for 3 seconds before auto exit the frame
+    private static final int EXIT_DELAY = 10000; // show the winning number for 3 seconds before auto exit the frame
     private static final int[] WHEEL_ORDER = {0, 26, 3, 35, 12, 28, 7, 29, 18, 22, 9, 31, 14, 20, 1, 33, 16, 24, 5, 10, 23, 8, 30, 11, 36, 13, 27, 6, 34, 17, 25, 2, 21, 4, 19, 15, 32};
 
 
@@ -90,7 +90,7 @@ public class Spinner extends JPanel implements ActionListener {
     }
 
     private SpinnerNumber mapToSpinnerNumber(int winningNumber) {
-        return SpinnerNumber.values()[winningNumber];
+        return SpinnerNumber.values()[winningNumber] ;
     }
 
     private void startSpinning() {
@@ -124,15 +124,12 @@ public class Spinner extends JPanel implements ActionListener {
         isSpinning = false;
 
         // Display the final number
-        System.out.println("Stopped at number: " + (currentImageIndex-1));
+        System.out.println("Stopped at number: " + (currentImageIndex));
         SpinnerNumber winningNumber;
-        if (currentImageIndex == 0 ) {
-            currentImageIndex = 36;
-            winningNumber = mapToSpinnerNumber(WHEEL_ORDER[currentImageIndex] - 1);
-        }
-        else {
-            winningNumber = mapToSpinnerNumber(WHEEL_ORDER[currentImageIndex - 1] - 1);
-        }
+
+        currentImageIndex = currentImageIndex == 0 ? NUM_IMAGES : currentImageIndex;
+        winningNumber = mapToSpinnerNumber(WHEEL_ORDER[currentImageIndex - 1]);
+        System.out.println("Winning number temp is: " + winningNumber);
 
         if (spinCompletionCallback != null) {
             spinCompletionCallback.onSpinComplete(winningNumber);

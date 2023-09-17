@@ -44,6 +44,8 @@ public class Game {
             frame.setSize(655, 700);
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            frame.toFront();
+            frame.setAlwaysOnTop(true);
 
             spinner.spin(new SpinCompletionCallback() {
                 @Override
