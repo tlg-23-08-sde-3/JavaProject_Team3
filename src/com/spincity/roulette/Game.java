@@ -4,6 +4,8 @@ import com.apps.util.Console;
 import com.spincity.roulette.bet.BetCalculator;
 import com.spincity.roulette.bet.BettingFactory;
 
+import javax.swing.*;
+
 public class Game {
     private BettingCategory bettingCategory;
     private BettingCategory.Color colorOption;
@@ -28,18 +30,32 @@ public class Game {
         gameStats();
         Board.displayBoard();
 
-        Spinner spinner = new Spinner();
-        SpinnerNumber pickedNumber = spinner.spin();
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Wish you Good Luck");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            Spinner spinner = new Spinner();
+            frame.add(spinner);
+            frame.setSize(655, 700);
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
 
-        BetCalculator betCalculatorCalculator = BettingFactory.bettingStrategy(bettingCategory);
-        double winAmount = betCalculatorCalculator.calculateWinLoss(pickedNumber, colorOption);
+            spinner.spin(new SpinCompletionCallback() {
+                @Override
+                public void onSpinComplete(SpinnerNumber pickedNumber) {
+                    // Use the pickedNumber here
+                    System.out.println(pickedNumber);
+                    BetCalculator betCalculatorCalculator = BettingFactory.bettingStrategy(bettingCategory);
+                    double winAmount = betCalculatorCalculator.calculateWinLoss(pickedNumber, colorOption);
+                    if (winAmount == 0.0) {
+                        System.out.println("you lost");
+                    } else {
+                        System.out.println("Your Won");
+                    }
+                }
+            });
 
-        if (winAmount == 0.0) {
-            System.out.println("you lost");
-        } else {
-            System.out.println("Your Won");
-        }
 
+        });
     }
 
 }
