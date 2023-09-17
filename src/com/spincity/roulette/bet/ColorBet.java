@@ -1,11 +1,11 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.BettingCategory;
+import com.spincity.roulette.Bet;
 import com.spincity.roulette.SpinnerNumber;
 
 class ColorBet implements BetCalculator {
     @Override
-    public double calculateWinLoss(SpinnerNumber spinnerNumber, BettingCategory.Color colorOption) {
+    public double calculateWinLoss(SpinnerNumber spinnerNumber, Bet.Color colorOption) {
         // Do some calculation
 
         if (colorOption == spinnerNumber.getColorOption()) {
