@@ -18,8 +18,8 @@ interface SpinCompletionCallback {
 }
 
 public class Spinner extends JPanel implements ActionListener {
-    private static final String IMAGE_PREFIX = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\Roulette-"; // Roulette wheel images filename prefix
-    private static final String WAV_FILE = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\wheel.wav"; // Wheel Sound file (WAV format)
+    private static final String IMAGE_PREFIX = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\Spinner\\\\Roulette-"; // Roulette wheel images filename prefix
+    private static final String WAV_FILE = "C:\\\\StudentWork\\\\MiniProject\\\\JavaProject_Team3\\\\images\\\\Spinner\\\\wheel.wav"; // Wheel Sound file (WAV format)
     private static final int NUM_IMAGES = 37; // Number of total images that makes the wheel spin
     private static final int INITIAL_ANIMATION_DELAY = 50; // Initial milliseconds per image
     private static final int MAX_INCREASE_DELAY = 250; // Maximum additional delay per second
