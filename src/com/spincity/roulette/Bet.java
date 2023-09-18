@@ -24,4 +24,19 @@ public enum Bet {
         DOZEN_13_TO_24,
         DOZEN_25_TO_36;
     }
+
+    public static enum Column {
+        NO_GROUP,   // for zero
+        COLUMN_1_TO_34,
+        COLUMN_2_TO_35,
+        COLUMN_3_TO_36;
+    }
+
+    public static enum LowHigh {
+        No_GROUP,   // for zero
+        LOW_1_TO_18,
+        HIGH_19_TO_36;
+    }
+
+
 }
