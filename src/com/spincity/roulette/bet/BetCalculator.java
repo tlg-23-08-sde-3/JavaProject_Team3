@@ -5,6 +5,6 @@ import com.spincity.roulette.BetOption;
 import com.spincity.roulette.SpinnerNumber;
 
 public interface BetCalculator {
-    public double calculateWinLoss(SpinnerNumber spinnerNumber, Bet bet);
+    public double calculateWinLoss(SpinnerNumber spinnerNumber);
 }
 

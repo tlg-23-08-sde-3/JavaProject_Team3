@@ -1,12 +1,22 @@
 package com.spincity.roulette;
 
 public enum BetType {
-    SINGLE_NUMBER,
-    DOZEN,
-    COLUMN,
-    COLOR,
-    HIGH_LOW,
-    EVEN_ODD;
+    SINGLE_NUMBER(36),
+    DOZEN(3),
+    COLUMN(3),
+    COLOR(2),
+    HIGH_LOW(2),
+    EVEN_ODD(2);
+
+    private final int multiplier;
+
+    BetType(int multiplier) {
+        this.multiplier = multiplier;
+    }
+
+    public int multiplier() {
+        return multiplier;
+    }
 
     public static enum EvenOdd implements BetOption {
         EVEN,
