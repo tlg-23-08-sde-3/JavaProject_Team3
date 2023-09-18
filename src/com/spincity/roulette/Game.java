@@ -4,6 +4,12 @@ import static com.spincity.roulette.utils.ANSI.*;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.spincity.roulette.bet.*;
+import com.spincity.roulette.account.Account;
+import com.spincity.roulette.account.Player;
+import com.spincity.roulette.spinner.SpinCompletionCallback;
+import com.spincity.roulette.spinner.Spinner;
+import com.spincity.roulette.spinner.SpinnerNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +45,7 @@ public class Game {
 
     public void gameStats() {
         String accountBalanceText = String.format("Account Balance: $%,.2f", player.getAccountBalance());
-        System.out.printf(" Player Name: %-55s %30s\n", player.getPlayerName(), accountBalanceText);
+        System.out.printf(" Player Name: %-55s %30s\n", player.getName(), accountBalanceText);
     }
 
     public void play() {
@@ -50,8 +56,8 @@ public class Game {
             refreshScreen();
             Bet bet = betSelection();
             player.subtractAmount(bet.getChip().value());
+            board.placeChips(bet.getOption().boardElement(), bet.getChip());
             bets.add(bet);
-
 
             refreshScreen();
             System.out.println("***********************************************");
@@ -65,34 +71,40 @@ public class Game {
         }
 
 
-//
-//        // Selection Options
-//        bettingCategory = Bet.COLOR;
-//        bettingOption = Bet.Color.RED;
-//        winningNumber = SpinnerNumber.FIVE;
-//
-//        Console.clear();
-//        gameStats();
-//        board.display();
-//
-//        BetCalculator betCalculatorCalculator = BettingFactory.bettingStrategy(bettingCategory);
-//        double winAmount = betCalculatorCalculator.calculateWinLoss(winningNumber, 100.0, bettingOption);
-//
-//        if (winAmount == 0.0) {
-//            System.out.println("you lost");
-//        } else {
-//            System.out.println("Your Won");
-//        }
+        displaySpinner();
+        refreshScreen();
+        double amountWon = calculateWinnings(bets, winningNumber);
+        player.addAmount(amountWon);
+
+        // TODO: displaying amount won based on bets chosen
+        // TODO: A splash screen or console based ASCII of "You Won" or "You Did Not Win"
+
+        System.out.println("\nThe winning number is " +  colorGreen(String.valueOf(winningNumber.getNumber())) + Color.RESET +
+                " & Color is " + winningNumber.color() + "\n");
+
+        if (amountWon == 0.0) {
+            System.out.println(colorRed("\nSorry! you did not win anything. Better luck next time!\n"));
+        } else {
+            System.out.printf(colorGreen("Congratulations! You won $%,.2f\n"), amountWon);
+            System.out.printf("Your new account Balance is: $%,.2f\n",  player.getAccountBalance());
+            System.out.println();
+        }
+
+        /*
+         * Ask if player want to play another game
+         */
+        String continuePlayInput = prompter.prompt("Would you to play again (Y/N)? ", "[YyNn]", errorMessageInvalidEntry());
+        player.setWantsToPlay(continuePlayInput.equals("Y") || continuePlayInput.equals("y"));
     }
 
     private Bet betSelection() {
-        System.out.println("Bet Types\n" +
-                "\t1. Number Bet\n" +
-                "\t2. Dozen Bet\n" +
-                "\t3. Color Bet\n" +
-                "\t4. Even/Odd Bet\n" +
-                "\t5. Column Bet\n" +
-                "\t6. High/Low Bet\n"
+        System.out.println("Bet Types \n" +
+                "\t1. Number Bet" + " (" + BetType.SINGLE_NUMBER.multiplier() + "-to-1)" + "\n" +
+                "\t2. Dozen Bet" +" (" + BetType.DOZEN.multiplier() + "-to-1)" + "\n" +
+                "\t3. Color Bet" +" (" + BetType.COLOR.multiplier() + "-to-1)" + "\n" +
+                "\t4. Even/Odd Bet" +" (" + BetType.EVEN_ODD.multiplier() + "-to-1)" + "\n" +
+                "\t5. Column Bet" +" (" + BetType.COLUMN.multiplier() + "-to-1)" + "\n" +
+                "\t6. High/Low Bet" + " (" + BetType.HIGH_LOW.multiplier() + "-to-1)" + "\n"
         );
 
         String betInput = prompter.prompt("Select a bet type: ", "[1-6]", errorMessageInvalidSelection());
@@ -221,7 +233,7 @@ public class Game {
                     .append(i + 1)
                     .append(". ")
                     .append(chips[i].getChip())
-                    .append(" ")
+                    .append(" $")
                     .append(chips[i].value())
                     .append("\n");
         }
@@ -303,5 +315,17 @@ public class Game {
         Console.clear();
         gameStats();
         board.display();
+    }
+
+    private double calculateWinnings(List<Bet> bets, SpinnerNumber winningNumber) {
+        double amountWon = 0.0;
+
+        for (Bet bet : bets) {
+            BetCalculator betCalculator = BettingFactory.bettingStrategy(bet);
+            assert betCalculator != null;
+            amountWon += betCalculator.calculateWinLoss(winningNumber);
+        }
+
+        return amountWon;
     }
 }

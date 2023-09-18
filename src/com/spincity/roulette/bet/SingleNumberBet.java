@@ -1,8 +1,7 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Bet;
-import com.spincity.roulette.SpinnerNumber;
-import com.spincity.roulette.BetType.SingleNumber;
+import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.bet.BetType.SingleNumber;
 
 public class SingleNumberBet implements BetCalculator {
     private Bet bet;

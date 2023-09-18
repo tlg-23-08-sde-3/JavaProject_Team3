@@ -1,13 +1,13 @@
-package com.spincity.roulette;
+package com.spincity.roulette.account;
 
 public class Player {
-    private String playerName;
+    private String name;
     private int accountId;
     private double accountBalance;
     private boolean wantsToPlay;
 
-    public Player(String playerName) {
-        setPlayerName(playerName);
+    public Player(String name) {
+        setName(name);
         setWantsToPlay(true);
         setAccountId(0);
         setAccountBalance(2500.0); // start the player with default play money of $2500
@@ -21,12 +21,12 @@ public class Player {
         setAccountBalance(accountBalance);
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getName() {
+        return name;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAccountId() {

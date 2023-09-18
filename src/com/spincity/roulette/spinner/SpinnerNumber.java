@@ -1,6 +1,8 @@
-package com.spincity.roulette;
+package com.spincity.roulette.spinner;
 
-import static com.spincity.roulette.BetType.Color.*;
+import com.spincity.roulette.bet.BetType;
+
+import static com.spincity.roulette.bet.BetType.Color.*;
 
 public enum SpinnerNumber {
     ZERO(0, NO_COLOR),
