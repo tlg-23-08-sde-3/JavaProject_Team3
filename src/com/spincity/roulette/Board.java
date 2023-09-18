@@ -161,6 +161,10 @@ public class Board {
             this.displayValue = displayValue;
         }
 
+        public String getValue() {
+            return value;
+        }
+
         @Override
         public String toString() {
             String valueToReturn = displayValue == null ? value : displayValue;

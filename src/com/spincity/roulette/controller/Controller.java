@@ -14,8 +14,11 @@ public class Controller {
     }
 
 
-//        Game game = new Game();
-//        game.selectBet();
+        String input = prompter.prompt("Enter you login id: ");
+
+        Game game = new Game();
+        // TODO: returns whether user wants to continue playing
+        game.play();
 
 
 
