@@ -52,5 +52,14 @@ public class Player {
     public void setWantsToPlay(boolean wantsToPlay) {
         this.wantsToPlay = wantsToPlay;
     }
+
+    public void addAmount(double amount) {
+       setAccountBalance(this.getAccountBalance() + amount);
+    }
+
+    public void subtractAmount(double amount) {
+        setAccountBalance(this.getAccountBalance() - amount);
+    }
+
 }
 

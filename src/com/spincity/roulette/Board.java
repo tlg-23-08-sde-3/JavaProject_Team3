@@ -12,20 +12,23 @@ import java.util.Map;
 public class Board {
     private static final String defaultForeground = ANSI.Color.OFF_WHITE.toString();
     private static final String defaultBackground = ANSI.BackgroundColor.GREEN.toString();
+    private static final String CHIP_ICON = "●";
     //    private static final String defaultBackground = "\u001B[48;5;28m";
-    private static final String chip = ANSI.Color.BRIGHT_YELLOW + "●" + defaultForeground;
-
+//    private static final String chip = ANSI.Color.BRIGHT_YELLOW + "●" + defaultForeground;
+    private Chip chip;
     // State of board values: Not Selected = " ", Selected = "@";
-    private final Map<BoardElement, String> boardState;
+    private final Map<BoardElement, Chip> boardState;
 
     public static void main(String[] args) {
         // TODO: remove in the final version
         // This Main Method is for Testing Only
         Board board = new Board();
-        board.placeChips(TWELVE);
-        board.placeChips(THIRTY_FOUR);
-        board.placeChips(COLUMN_2_ENDS_35);
-        board.placeChips(RED);
+        board.placeChips(TWELVE, Chip.CHIP_1);
+        board.placeChips(THIRTY_FOUR, Chip.CHIP_5);
+        board.placeChips(COLUMN_2_ENDS_35, Chip.CHIP_10);
+        board.placeChips(DOZEN_1_TO_12, Chip.CHIP_25);
+        board.placeChips(RED, Chip.CHIP_100);
+        board.placeChips(HIGH_19_TO_36, Chip.CHIP_500);
         board.display();
 
     }
@@ -35,7 +38,7 @@ public class Board {
 
         // Initialize boardState with all elements — set initial state to be empty
         for (BoardElement boardElement : BoardElement.values()) {
-            boardState.put(boardElement, " ");
+            boardState.put(boardElement, null);
         }
     }
 
@@ -79,18 +82,19 @@ public class Board {
         System.out.println(boardBuilder);
     }
 
-    public void placeChips(BoardElement boardElement) {
+    public void placeChips(BoardElement boardElement, Chip chip) {
         boardState.put(boardElement, chip);
     }
 
     // Shows the Element + Element's Chip (if user selected it)
     private String showElem(BoardElement boardElement) {
-        return boardElement + boardState.get(boardElement);
+        String chipString = boardState.get(boardElement) == null ? " " : boardState.get(boardElement).getChip();
+        return boardElement + chipString;
     }
 
     // Remove all chips from the board
     private void resetBoard() {
-        boardState.replaceAll((k, v) -> " ");
+        boardState.replaceAll((k, v) -> null);
     }
 
     // Enum that represents element of the board.
@@ -171,4 +175,34 @@ public class Board {
         }
     }
 
+    // Enum that represents chips on the board
+    public static enum Chip {
+        CHIP_1(1, ANSI.Color.OFF_WHITE),
+        CHIP_5(5, ANSI.Color.PURPLE),
+        CHIP_10(10, ANSI.Color.BLUE),
+        CHIP_25(25, ANSI.Color.ORANGE),
+        CHIP_100(100, ANSI.Color.BRIGHT_YELLOW),
+        CHIP_500(500, ANSI.Color.BRIGHT_MAGENTA);
+
+        private final int value;
+        private final ANSI.Color color;
+
+        Chip(int value, ANSI.Color color) {
+            this.value = value;
+            this.color = color;
+        }
+
+        public int value() {
+            return this.value;
+        }
+
+        public ANSI.Color color() {
+            return this.color;
+        }
+
+        public String getChip() {
+            return color() + CHIP_ICON + defaultForeground;
+        }
+
+    }
 }
