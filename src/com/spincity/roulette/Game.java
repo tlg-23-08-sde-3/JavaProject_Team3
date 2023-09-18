@@ -5,16 +5,20 @@ import static com.spincity.roulette.utils.ANSI.*;
 import com.apps.util.Console;
 import com.apps.util.Prompter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import javax.swing.*;
 import java.util.Scanner;
 
 public class Game {
-    private Board board;
+    private final Board board;
     private SpinnerNumber winningNumber;
     private BetType betType;
     private BetOption betOption;
+    private Board.Chip chip;
     private double amount;
+    private List<Bet> bets;
     private Player player;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
     private final CountDownLatch latch = new CountDownLatch(1);
@@ -22,22 +26,41 @@ public class Game {
     public static void main(String[] args) {
         // TODO: Remove in final version
         Account account = Account.createNewAccount("Kobi");
-        Game game = new Game(account.getPlayer());
+        Player testPlayer = account.getPlayer();
+        Game game = new Game(testPlayer);
         game.play();
     }
 
     public Game(Player player) {
         setPlayer(player);
         board = new Board();
+        bets = new ArrayList<>();
     }
 
     public void gameStats() {
-        System.out.printf("Player Name: %48s Account Balance: $%,.2f\n", "Jojo", 2500.0);
+        String accountBalanceText = String.format("Account Balance: $%,.2f", player.getAccountBalance());
+        System.out.printf(" Player Name: %-55s %30s\n", player.getPlayerName(), accountBalanceText);
     }
 
     public void play() {
-        refreshScreen();
-        Bet bet = betSelection();
+        /*
+         * User selects multiple bets
+         */
+        while (true) {
+            refreshScreen();
+            Bet bet = betSelection();
+            bets.add(bet);
+
+            refreshScreen();
+            System.out.println("***********************************************");
+            System.out.println("**  Increase your odds by adding another bet **");
+            System.out.println("***********************************************\n");
+            String continueInput = prompter.prompt("Would you like to add another bet (Y/N): ", "[YyNn]", errorMessageInvalidEntry());
+
+            if (continueInput.equals("N") || continueInput.equals("n")) {
+                break;
+            }
+        }
 
 
 //
@@ -83,20 +106,7 @@ public class Game {
                 String singleNumberInput = prompter.prompt("Choose a number to bet (0-36): ", "([0-9]|[12][0-9]|3[0-6])", errorMessageInvalidSelection());
                 int singleNumberSelection = Integer.parseInt(singleNumberInput);
 
-                // Place Chips
-                for (var element : Board.BoardElement.values()) {
-                    try {
-                        int boardNumber = Integer.parseInt(element.value());
-                        if (boardNumber == singleNumberSelection) {
-                            board.placeChips(element);
-                            break;
-                        }
-                    } catch (Exception ignored) {
-                        // We can ignore non-number board elements
-                    }
-                }
-
-                // Update bet option
+                // Update bet options with the corresponding bet
                 for (var singleNumberEnum : BetType.SingleNumber.values()) {
                     if (singleNumberEnum.value() == singleNumberSelection) {
                         betOption = singleNumberEnum;
@@ -117,15 +127,12 @@ public class Game {
 
                 switch (dozenInput) {
                     case "1":
-                        board.placeChips(Board.BoardElement.DOZEN_1_TO_12);
                         betOption = BetType.Dozen.DOZEN_1_TO_12;
                         break;
                     case "2":
-                        board.placeChips(Board.BoardElement.DOZEN_13_TO_24);
                         betOption = BetType.Dozen.DOZEN_13_TO_24;
                         break;
                     case "3":
-                        board.placeChips(Board.BoardElement.DOZEN_25_TO_36);
                         betOption = BetType.Dozen.DOZEN_25_TO_36;
                 }
                 break;
@@ -139,10 +146,8 @@ public class Game {
 
                 String colorInput = prompter.prompt("Select a color (1-2): ", "[1-2]", errorMessageInvalidSelection());
                 if (colorInput.equals("1")) {
-                    board.placeChips(Board.BoardElement.RED);
                     betOption = BetType.Color.RED;
                 } else {
-                    board.placeChips(Board.BoardElement.BLACK);
                     betOption = BetType.Color.BLACK;
                 }
 
@@ -158,10 +163,8 @@ public class Game {
                 String evenOddInput = prompter.prompt("Select an option (1-2): ", "[1-2]", errorMessageInvalidSelection());
                 betOption = evenOddInput.equals("1") ? BetType.EvenOdd.EVEN : BetType.EvenOdd.ODD;
                 if (evenOddInput.equals("1")) {
-                    board.placeChips(Board.BoardElement.EVEN);
                     betOption = BetType.EvenOdd.EVEN;
                 } else {
-                    board.placeChips(Board.BoardElement.ODD);
                     betOption = BetType.EvenOdd.ODD;
                 }
 
@@ -178,15 +181,12 @@ public class Game {
                 String columnInput = prompter.prompt("Select a column (1-3): ", "[1-3]", errorMessageInvalidSelection());
                 switch (columnInput) {
                     case "1":
-                        board.placeChips(Board.BoardElement.COLUMN_1_ENDS_34);
                         betOption = BetType.Column.COLUMN_1_ENDS_34;
                         break;
                     case "2":
-                        board.placeChips(Board.BoardElement.COLUMN_2_ENDS_35);
                         betOption = BetType.Column.COLUMN_2_ENDS_35;
                         break;
                     case "3":
-                        board.placeChips(Board.BoardElement.COLUMN_3_ENDS_36);
                         betOption = BetType.Column.COLUMN_3_ENDS_36;
                 }
                 break;
@@ -200,10 +200,8 @@ public class Game {
 
                 String highLowInput = prompter.prompt("Select an option (1-2): ", "[1-2]", errorMessageInvalidSelection());
                 if ("1".equals(highLowInput)) {
-                    board.placeChips(Board.BoardElement.LOW_1_TO_18);
                     betOption = BetType.HighLow.LOW_1_TO_18;
                 } else {
-                    board.placeChips(Board.BoardElement.HIGH_19_TO_36);
                     betOption = BetType.HighLow.HIGH_19_TO_36;
                 }
         }
@@ -212,23 +210,47 @@ public class Game {
          * Ask player for an  amount to bet.
          */
         refreshScreen();
+        chip = selectChip();
+
+        return new Bet(betType, betOption, chip);
+    }
+
+    public Board.Chip selectChip() {
+        Board.Chip selectedChip = null;
+
+        // Build Selection Screen
+        StringBuilder amountSelectionBuilder = new StringBuilder()
+                .append("Select an amount to bet \n");
+
+        Board.Chip[] chips = Board.Chip.values();
+        for (int i = 0; i < chips.length; i++) {
+            amountSelectionBuilder.append("\t")
+                    .append(i + 1)
+                    .append(" ")
+                    .append(chips[i].getChip())
+                    .append(" ")
+                    .append(chips[i].value())
+                    .append("\n");
+        }
+
         while (true) {
-            amount = Double.parseDouble(prompter.prompt("Enter an amount to bet: ", "[+-]?([0-9]+[.])?[0-9]+", errorMessageInvalidEntry()));
 
-            if (amount <= 0) {
-                System.out.println(colorRed("Amount must be greater than 0!") + " Please try again.\n");
-                continue;
-            }
+            int amountIdxInput = Integer.parseInt(prompter.prompt("Select an amount (1-" + chips.length + "): ",
+                    "[1-" + chips.length + "]", errorMessageInvalidSelection()));
 
-            if (amount > player.getAccountBalance()) {
-                System.out.printf(colorRed("Insufficient Balance!") + " Max amount you can bet is $%,.2f\n\n", player.getAccountBalance());
+            // Array is 0-indexed, but for user selection we started at 1
+            selectedChip = chips[amountIdxInput - 1];
+            double amountToValidate = selectedChip.value();
+
+            if (amountToValidate > player.getAccountBalance()) {
+                System.out.printf(colorRed("Insufficient Balance!") + " Current account balance is $%,.2f\n\n", player.getAccountBalance());
                 continue;
             }
 
             break;
         }
 
-        return new Bet(betType, betOption, amount);
+        return selectedChip;
     }
 
     public void displaySpinner() {

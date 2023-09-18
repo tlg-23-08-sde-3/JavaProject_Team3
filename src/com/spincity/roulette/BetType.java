@@ -1,5 +1,7 @@
 package com.spincity.roulette;
 
+import com.spincity.roulette.Board.BoardElement;
+
 public enum BetType {
     SINGLE_NUMBER(36),
     DOZEN(3),
@@ -19,84 +21,136 @@ public enum BetType {
     }
 
     public static enum EvenOdd implements BetOption {
-        EVEN,
-        ODD,
-        NOT_EVEN_ODD;  // For Zero
+        EVEN(BoardElement.EVEN),
+        ODD(BoardElement.ODD);
+
+        private final BoardElement boardElement;
+
+        EvenOdd(BoardElement boardElement) {
+            this.boardElement = boardElement;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
+        }
     }
 
     public static enum Color implements BetOption {
-        RED,
-        BLACK,
-        NO_COLOR;  // for Zero
+        RED(BoardElement.RED),
+        BLACK(BoardElement.BLACK),
+        NO_COLOR(BoardElement.ZERO);  // for Zero
+
+        private final BoardElement boardElement;
+
+        Color(BoardElement boardElement) {
+            this.boardElement = boardElement;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
+        }
     }
 
     public static enum Dozen implements BetOption {
-        NO_GROUP,  // for Zero
-        DOZEN_1_TO_12,
-        DOZEN_13_TO_24,
-        DOZEN_25_TO_36;
+        DOZEN_1_TO_12(BoardElement.DOZEN_1_TO_12),
+        DOZEN_13_TO_24(BoardElement.DOZEN_13_TO_24),
+        DOZEN_25_TO_36(BoardElement.DOZEN_25_TO_36);
+
+        private final BoardElement boardElement;
+
+        Dozen(BoardElement boardElement) {
+            this.boardElement = boardElement;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
+        }
     }
 
     public static enum Column implements BetOption {
-        No_COLUMN,
-        COLUMN_1_ENDS_34,
-        COLUMN_2_ENDS_35,
-        COLUMN_3_ENDS_36;
+        COLUMN_1_ENDS_34(BoardElement.COLUMN_1_ENDS_34),
+        COLUMN_2_ENDS_35(BoardElement.COLUMN_2_ENDS_35),
+        COLUMN_3_ENDS_36(BoardElement.COLUMN_3_ENDS_36);
+
+        private final BoardElement boardElement;
+
+        Column(BoardElement boardElement) {
+            this.boardElement = boardElement;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
+        }
     }
 
     public static enum HighLow implements BetOption {
-        NOT_HIGH_LOW,
-        LOW_1_TO_18,
-        HIGH_19_TO_36;
+        LOW_1_TO_18(BoardElement.LOW_1_TO_18),
+        HIGH_19_TO_36(BoardElement.HIGH_19_TO_36);
+
+        private final BoardElement boardElement;
+
+        HighLow(BoardElement boardElement) {
+            this.boardElement = boardElement;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
+        }
     }
 
     public static enum SingleNumber implements BetOption {
-        ZERO(0),
-        ONE(1),
-        TWO(2),
-        THREE(3),
-        FOUR(4),
-        FIVE(5),
-        SIX(6),
-        SEVEN(7),
-        EIGHT(8),
-        NINE(9),
-        TEN(10),
-        ELEVEN(11),
-        TWELVE(12),
-        THIRTEEN(13),
-        FOURTEEN(14),
-        FIFTEEN(15),
-        SIXTEEN(16),
-        SEVENTEEN(17),
-        EIGHTEEN(18),
-        NINETEEN(19),
-        TWENTY(20),
-        TWENTY_ONE(21),
-        TWENTY_TWO(22),
-        TWENTY_THREE(23),
-        TWENTY_FOUR(24),
-        TWENTY_FIVE(25),
-        TWENTY_SIX(26),
-        TWENTY_SEVEN(27),
-        TWENTY_EIGHT(28),
-        TWENTY_NINE(29),
-        THIRTY(30),
-        THIRTY_ONE(31),
-        THIRTY_TWO(32),
-        THIRTY_THREE(33),
-        THIRTY_FOUR(34),
-        THIRTY_FIVE(35),
-        THIRTY_SIX(36);
+        ZERO(0, BoardElement.ZERO),
+        ONE(1, BoardElement.ONE),
+        TWO(2, BoardElement.TWO),
+        THREE(3, BoardElement.THREE),
+        FOUR(4, BoardElement.FOUR),
+        FIVE(5, BoardElement.FIVE),
+        SIX(6, BoardElement.SIX),
+        SEVEN(7, BoardElement.SEVEN),
+        EIGHT(8, BoardElement.EIGHT),
+        NINE(9, BoardElement.NINE),
+        TEN(10, BoardElement.TEN),
+        ELEVEN(11, BoardElement.ELEVEN),
+        TWELVE(12, BoardElement.TWELVE),
+        THIRTEEN(13, BoardElement.THIRTEEN),
+        FOURTEEN(14, BoardElement.FOURTEEN),
+        FIFTEEN(15, BoardElement.FIFTEEN),
+        SIXTEEN(16, BoardElement.SIXTEEN),
+        SEVENTEEN(17, BoardElement.SEVENTEEN),
+        EIGHTEEN(18, BoardElement.EIGHTEEN),
+        NINETEEN(19, BoardElement.NINETEEN),
+        TWENTY(20, BoardElement.TWENTY),
+        TWENTY_ONE(21, BoardElement.TWENTY_ONE),
+        TWENTY_TWO(22, BoardElement.TWENTY_TWO),
+        TWENTY_THREE(23, BoardElement.TWENTY_THREE),
+        TWENTY_FOUR(24, BoardElement.TWENTY_FOUR),
+        TWENTY_FIVE(25, BoardElement.TWENTY_FIVE),
+        TWENTY_SIX(26, BoardElement.TWENTY_SIX),
+        TWENTY_SEVEN(27, BoardElement.TWENTY_SEVEN),
+        TWENTY_EIGHT(28, BoardElement.TWENTY_EIGHT),
+        TWENTY_NINE(29, BoardElement.TWENTY_NINE),
+        THIRTY(30, BoardElement.THIRTY),
+        THIRTY_ONE(31, BoardElement.THIRTY_ONE),
+        THIRTY_TWO(32, BoardElement.THIRTY_TWO),
+        THIRTY_THREE(33, BoardElement.THIRTY_THREE),
+        THIRTY_FOUR(34, BoardElement.THIRTY_FOUR),
+        THIRTY_FIVE(35, BoardElement.THIRTY_FIVE),
+        THIRTY_SIX(36, BoardElement.THIRTY_SIX);
 
         private final int value;
+        private final BoardElement boardElement;
 
-        SingleNumber(int value) {
+        SingleNumber(int value, BoardElement boardElement) {
             this.value = value;
+            this.boardElement = boardElement;
         }
 
         public int value() {
             return value;
+        }
+
+        public BoardElement boardElement() {
+            return boardElement;
         }
     }
 }

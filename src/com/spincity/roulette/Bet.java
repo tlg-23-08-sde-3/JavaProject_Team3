@@ -3,7 +3,7 @@ package com.spincity.roulette;
 public class Bet {
     private BetType type;
     private BetOption option;
-    private double amount;
+    private Board.Chip chip;
 
     public Bet () {
 
@@ -18,17 +18,17 @@ public class Bet {
         setOption(option);
     }
 
-    public Bet(BetType betType, BetOption option, double amount) {
+    public Bet(BetType betType, BetOption option, Board.Chip chip) {
         this(betType, option);
-        setAmount(amount);
+        setChip(chip);
     }
 
-    public double getAmount() {
-        return amount;
+    public Board.Chip getChip() {
+        return chip;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setChip(Board.Chip chip) {
+        this.chip = chip;
     }
 
     public BetType getType() {
@@ -45,19 +45,6 @@ public class Bet {
 
     public void setOption(BetOption option) {
         this.option = option;
-    }
-
-    public static enum Column {
-        NO_GROUP,   // for zero
-        COLUMN_1_TO_34,
-        COLUMN_2_TO_35,
-        COLUMN_3_TO_36;
-    }
-
-    public static enum LowHigh {
-        No_GROUP,   // for zero
-        LOW_1_TO_18,
-        HIGH_19_TO_36;
     }
 
 

@@ -34,8 +34,11 @@ public class ANSI {
         BLACK("30m"),
         WHITE("97m"),
         OFF_WHITE("38;5;251m"),
+        BLUE("38;5;21m"),
+        ORANGE("38;5;209m"),
+        PURPLE("38;5;92m"),
         MAGENTA("35m"),
-        BRIGHT_MAGENTA("95m");
+        BRIGHT_MAGENTA("38;5;126m");
 
 
         private final String value;
