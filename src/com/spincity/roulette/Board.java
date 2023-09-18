@@ -2,7 +2,6 @@ package com.spincity.roulette;
 
 import static com.spincity.roulette.Board.BoardElement.*;
 
-import com.apps.util.Console;
 import com.spincity.roulette.utils.ANSI;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class Board {
         Board board = new Board();
         board.placeChips(TWELVE);
         board.placeChips(THIRTY_FOUR);
-        board.placeChips(SECOND_COLUMN);
+        board.placeChips(COLUMN_2_ENDS_35);
         board.placeChips(RED);
         board.display();
 
@@ -45,19 +44,19 @@ public class Board {
         List<String> boardLines = new ArrayList<>();
         boardLines.add("                                                                                                  ");
         boardLines.add("     /‾|‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾‾‾|");
-        boardLines.add("    /  |  " + showElem(THREE) + " |  " + showElem(SIX) + " |  " + showElem(NINE) + " |  " + showElem(TWELVE) + " |  " + showElem(FIFTEEN) + " |  " + showElem(EIGHTEEN) + " |  " + showElem(TWENTY_ONE) + " |  " + showElem(TWENTY_FOUR) + " |  " + showElem(TWENTY_SEVEN) + " |  " + showElem(THIRTY) + " |  " + showElem(THIRTY_THREE) + " |  " + showElem(THIRTY_SIX) + " |  " + showElem(THIRD_COLUMN) + " |");
+        boardLines.add("    /  |  " + showElem(THREE) + " |  " + showElem(SIX) + " |  " + showElem(NINE) + " |  " + showElem(TWELVE) + " |  " + showElem(FIFTEEN) + " |  " + showElem(EIGHTEEN) + " |  " + showElem(TWENTY_ONE) + " |  " + showElem(TWENTY_FOUR) + " |  " + showElem(TWENTY_SEVEN) + " |  " + showElem(THIRTY) + " |  " + showElem(THIRTY_THREE) + " |  " + showElem(THIRTY_SIX) + " |  " + showElem(COLUMN_3_ENDS_36) + " |");
         boardLines.add("   /   |     |     |     |      |      |      |      |      |      |      |      |      |        |");
         boardLines.add("  /    |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾‾‾|");
-        boardLines.add(" |  " + showElem(ZERO) + " |  " + showElem(TWO) + " |  " + showElem(FIVE) + " |  " + showElem(EIGHT) + " |  " + showElem(ELEVEN) + " |  " + showElem(FOURTEEN) + " |  " + showElem(SEVENTEEN) + " |  " + showElem(TWENTY) + " |  " + showElem(TWENTY_THREE) + " |  " + showElem(TWENTY_SIX) + " |  " + showElem(TWENTY_NINE) + " |  " + showElem(THIRTY_TWO) + " |  " + showElem(THIRTY_FIVE) + " |  " + showElem(SECOND_COLUMN) + " |");
+        boardLines.add(" |  " + showElem(ZERO) + " |  " + showElem(TWO) + " |  " + showElem(FIVE) + " |  " + showElem(EIGHT) + " |  " + showElem(ELEVEN) + " |  " + showElem(FOURTEEN) + " |  " + showElem(SEVENTEEN) + " |  " + showElem(TWENTY) + " |  " + showElem(TWENTY_THREE) + " |  " + showElem(TWENTY_SIX) + " |  " + showElem(TWENTY_NINE) + " |  " + showElem(THIRTY_TWO) + " |  " + showElem(THIRTY_FIVE) + " |  " + showElem(COLUMN_2_ENDS_35) + " |");
         boardLines.add("  \\    |     |     |     |      |      |      |      |      |      |      |      |      |        |");
         boardLines.add("   \\   |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾|‾‾‾‾‾‾‾‾|");
-        boardLines.add("    \\  |  " + showElem(ONE) + " |  " + showElem(FOUR) + " |  " + showElem(SEVEN) + " |  " + showElem(TEN) + " |  " + showElem(THIRTEEN) + " |  " + showElem(SIXTEEN) + " |  " + showElem(NINETEEN) + " |  " + showElem(TWENTY_TWO) + " |  " + showElem(TWENTY_FIVE) + " |  " + showElem(TWENTY_EIGHT) + " |  " + showElem(THIRTY_ONE) + " |  " + showElem(THIRTY_FOUR) + " |  " + showElem(FIRST_COLUMN) + " |");
+        boardLines.add("    \\  |  " + showElem(ONE) + " |  " + showElem(FOUR) + " |  " + showElem(SEVEN) + " |  " + showElem(TEN) + " |  " + showElem(THIRTEEN) + " |  " + showElem(SIXTEEN) + " |  " + showElem(NINETEEN) + " |  " + showElem(TWENTY_TWO) + " |  " + showElem(TWENTY_FIVE) + " |  " + showElem(TWENTY_EIGHT) + " |  " + showElem(THIRTY_ONE) + " |  " + showElem(THIRTY_FOUR) + " |  " + showElem(COLUMN_1_ENDS_34) + " |");
         boardLines.add("     \\_|     |     |     |      |      |      |      |      |      |      |      |      |        |");
         boardLines.add("       |‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾ ");
         boardLines.add("       |         " + showElem(DOZEN_1_TO_12) + "        |          " + showElem(DOZEN_13_TO_24) + "          |         " + showElem(DOZEN_25_TO_36) + "           |         ");
         boardLines.add("       |                        |                           |                           |         ");
         boardLines.add("       |‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾|         ");
-        boardLines.add("       |  " + showElem(ONE_TO_18) + " |    " + showElem(EVEN) + "   |     " + showElem(RED) + "    |    " + showElem(BLACK) + "   |     " + showElem(ODD) + "    |  " + showElem(NINETEEN_TO_36) + "  |         ");
+        boardLines.add("       |  " + showElem(LOW_1_TO_18) + " |    " + showElem(EVEN) + "   |     " + showElem(RED) + "    |    " + showElem(BLACK) + "   |     " + showElem(ODD) + "    |  " + showElem(HIGH_19_TO_36) + "  |         ");
         boardLines.add("       |           |            |             |             |             |             |         ");
         boardLines.add("        ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾          ");
         boardLines.add("                                                                                                  ");
@@ -133,14 +132,14 @@ public class Board {
         THIRTY_FOUR("34", ANSI.Color.RED),
         THIRTY_FIVE("35", ANSI.Color.BLACK),
         THIRTY_SIX("36", ANSI.Color.RED),
-        FIRST_COLUMN("Line 1", ANSI.Color.WHITE, "2To1"),
-        SECOND_COLUMN("Line 2", ANSI.Color.WHITE, "2To1"),
-        THIRD_COLUMN("Line 3", ANSI.Color.WHITE, "2To1"),
+        COLUMN_1_ENDS_34("Line 1", ANSI.Color.WHITE, "2To1"),
+        COLUMN_2_ENDS_35("Line 2", ANSI.Color.WHITE, "2To1"),
+        COLUMN_3_ENDS_36("Line 3", ANSI.Color.WHITE, "2To1"),
         DOZEN_1_TO_12("1st 12", ANSI.Color.WHITE),
         DOZEN_13_TO_24("2nd 12", ANSI.Color.WHITE),
         DOZEN_25_TO_36("3rd 12", ANSI.Color.WHITE),
-        ONE_TO_18("1 to 18", ANSI.Color.WHITE),
-        NINETEEN_TO_36("19 to 36", ANSI.Color.WHITE),
+        LOW_1_TO_18("1 to 18", ANSI.Color.WHITE),
+        HIGH_19_TO_36("19 to 36", ANSI.Color.WHITE),
         EVEN("EVEN", ANSI.Color.WHITE),
         ODD("ODD", ANSI.Color.WHITE),
         RED("RED", ANSI.Color.RED),
@@ -161,7 +160,7 @@ public class Board {
             this.displayValue = displayValue;
         }
 
-        public String getValue() {
+        public String value() {
             return value;
         }
 
