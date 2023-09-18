@@ -1,8 +1,8 @@
 package com.spincity.roulette;
 
-import static com.spincity.roulette.Bet.EvenOdd.*;
-import static com.spincity.roulette.Bet.Dozen.*;
-import static com.spincity.roulette.Bet.Color.*;
+import static com.spincity.roulette.BetType.EvenOdd.*;
+import static com.spincity.roulette.BetType.Dozen.*;
+import static com.spincity.roulette.BetType.Color.*;
 
 public enum SpinnerNumber {
     ZERO(0, NO_GROUP, NOT_EVEN_ODD, NO_COLOR),
@@ -44,11 +44,11 @@ public enum SpinnerNumber {
     THIRTY_SIX(36, DOZEN_25_TO_36, EVEN, RED);
 
     private final int number;
-    private final Bet.Dozen dozen;
-    private final Bet.EvenOdd evenOddOption;
-    private final Bet.Color color;
+    private final BetType.Dozen dozen;
+    private final BetType.EvenOdd evenOddOption;
+    private final BetType.Color color;
 
-    SpinnerNumber(int number, Bet.Dozen dozen, Bet.EvenOdd evenOddOption, Bet.Color color) {
+    SpinnerNumber(int number, BetType.Dozen dozen, BetType.EvenOdd evenOddOption, BetType.Color color) {
         this.number = number;
         this.dozen = dozen;
         this.evenOddOption = evenOddOption;
@@ -59,15 +59,15 @@ public enum SpinnerNumber {
         return number;
     }
 
-    public Bet.Dozen getDozen() {
+    public BetType.Dozen getDozen() {
         return dozen;
     }
 
-    public Bet.EvenOdd getEvenOddOption() {
+    public BetType.EvenOdd getEvenOddOption() {
         return evenOddOption;
     }
 
-    public Bet.Color getColorOption() {
+    public BetType.Color getColorOption() {
         return color;
     }
 }

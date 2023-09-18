@@ -20,7 +20,8 @@ public class Controller {
         String input = prompter.prompt("Enter you login id: ");
 
         Game game = new Game();
-        game.selectBet();
+        // TODO: returns whether user wants to continue playing
+        game.play();
 
         // Ask for Input based on what was selected
 

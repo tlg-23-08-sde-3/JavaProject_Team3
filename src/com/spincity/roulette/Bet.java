@@ -1,27 +1,49 @@
 package com.spincity.roulette;
 
-public enum Bet {
-    STRAIGHT_UP,
-    BASKET,
-    COLOR,
-    EVEN_ODD;
+public class Bet {
+    private BetType type;
+    private BetOption option;
+    private double amount;
 
-    public static enum EvenOdd {
-        EVEN,
-        ODD,
-        NOT_EVEN_ODD;  // For Zero
+    public Bet () {
+
     }
 
-    public static enum Color {
-        RED,
-        BLACK,
-        NO_COLOR;  // for Zero
+    public Bet(BetType betType) {
+        setType(betType);
     }
 
-    public static enum Dozen {
-        NO_GROUP,  // for Zero
-        DOZEN_1_TO_12,
-        DOZEN_13_TO_24,
-        DOZEN_25_TO_36;
+    public Bet(BetType betType, BetOption option) {
+        this(betType);
+        setOption(option);
+    }
+
+    public Bet(BetType betType, BetOption option, double amount) {
+        this(betType, option);
+        setAmount(amount);
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public BetType getType() {
+        return type;
+    }
+
+    public void setType(BetType type) {
+        this.type = type;
+    }
+
+    public BetOption getOption() {
+        return option;
+    }
+
+    public void setOption(BetOption option) {
+        this.option = option;
     }
 }
