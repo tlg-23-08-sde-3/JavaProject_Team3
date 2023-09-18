@@ -12,16 +12,19 @@ public class Game {
     private Board board;
     private SpinnerNumber winningNumber;
     private BetOption betOption;
+    private Player player;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
     private final CountDownLatch latch = new CountDownLatch(1);
 
     public static void main(String[] args) {
+        Account account = Account.createNewAccount("Kobi");
         // TODO: Remove in final version
-        Game game = new Game();
+        Game game = new Game(account.getPlayer());
         game.play();
     }
 
-    public Game() {
+    public Game(Player player) {
+        setPlayer(player);
         board = new Board();
     }
 
@@ -53,7 +56,6 @@ public class Game {
 //        } else {
 //            System.out.println("Your Won");
 //        }
-
     }
 
     private void betSelection() {
@@ -70,7 +72,7 @@ public class Game {
 
         switch (betInput) {
             case "1":
-                
+
 
         }
 
@@ -115,4 +117,11 @@ public class Game {
         return ANSI.Color.RED + "Invalid Selection!" + ANSI.Color.RESET + " Please try again.\n\n";
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }

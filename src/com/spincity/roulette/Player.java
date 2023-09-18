@@ -4,9 +4,11 @@ public class Player {
     private String playerName;
     private int accountId;
     private double accountBalance;
+    private boolean wantsToPlay;
 
     public Player(String playerName) {
         setPlayerName(playerName);
+        setWantsToPlay(true);
         setAccountId(0);
         setAccountBalance(2500.0); // start the player with default play money of $2500
     }
@@ -41,6 +43,14 @@ public class Player {
 
     public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
+    }
+
+    public boolean wantsToPlay() {
+        return wantsToPlay;
+    }
+
+    public void setWantsToPlay(boolean wantsToPlay) {
+        this.wantsToPlay = wantsToPlay;
     }
 }
 
