@@ -1,8 +1,6 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Bet;
-import com.spincity.roulette.BetType;
-import com.spincity.roulette.SpinnerNumber;
+import com.spincity.roulette.spinner.SpinnerNumber;
 
 class EvenOddBet implements BetCalculator {
     public Bet bet;

@@ -1,8 +1,7 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Bet;
-import com.spincity.roulette.SpinnerNumber;
-import com.spincity.roulette.BetType.HighLow;
+import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.bet.BetType.HighLow;
 
 public class HighLowBet implements BetCalculator {
     private Bet bet;

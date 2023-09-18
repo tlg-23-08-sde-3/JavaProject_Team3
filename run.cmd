@@ -17,7 +17,7 @@ set compiledEntryFile="com.spincity.roulette.client.Main"
 set libraries=".\lib\*"
 
 :: Set output directory for compiled files.
-set outDir="\out\production\JavaProject_Team3"
+set outDir=".\out\production\JavaProject_Team3"
 
 :: Create the out folder, if it does not exist including any parent folders.
 if not exist %outDir% mkdir %outDir%

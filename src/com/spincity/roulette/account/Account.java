@@ -1,4 +1,4 @@
-package com.spincity.roulette;
+package com.spincity.roulette.account;
 
 import java.util.HashMap;
 import java.util.Map;

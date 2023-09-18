@@ -1,8 +1,7 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Bet;
-import com.spincity.roulette.SpinnerNumber;
-import com.spincity.roulette.BetType.Column;
+import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.bet.BetType.Column;
 
 public class ColumnBet implements BetCalculator {
     private Bet bet;
@@ -24,11 +23,11 @@ public class ColumnBet implements BetCalculator {
         int column;
 
         if (number % 3 == 1) {
-            column = 1;
+            column = 0;
         } else if (number % 3 == 2) {
-            column = 2;
+            column = 1;
         } else {
-            column = 3;
+            column = 2;
         }
 
         // Check the user bet with spinner column

@@ -1,4 +1,4 @@
-package com.spincity.roulette;
+package com.spincity.roulette.bet;
 
 import com.spincity.roulette.Board.BoardElement;
 

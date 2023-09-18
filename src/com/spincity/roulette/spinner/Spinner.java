@@ -1,4 +1,4 @@
-package com.spincity.roulette;
+package com.spincity.roulette.spinner;
 
 import javax.swing.*;
 import java.awt.*;

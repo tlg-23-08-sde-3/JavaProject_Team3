@@ -1,8 +1,10 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Bet;
-import com.spincity.roulette.SpinnerNumber;
-import com.spincity.roulette.BetType.Dozen;
+import com.spincity.roulette.Board;
+import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.bet.BetType.Dozen;
+
+import static com.spincity.roulette.bet.BetType.Dozen.*;
 
 public class DozenBet implements BetCalculator {
     private Bet bet;
@@ -11,9 +13,16 @@ public class DozenBet implements BetCalculator {
         setBet(bet);
     }
 
+    public static void main(String[] args) {
+        DozenBet dozenBet = new DozenBet(new Bet(BetType.DOZEN , DOZEN_13_TO_24, Board.Chip.CHIP_100));
+        double result = dozenBet.calculateWinLoss(SpinnerNumber.FIFTEEN);
+        System.out.println(result);
+        }
+
     @Override
     public double calculateWinLoss(SpinnerNumber spinnerNumber) {
         int number = spinnerNumber.getNumber();
+        BetOption dozenOption = bet.getOption();
 
         // Check if the spinner number is "0"
         if (number == 0) {
@@ -24,11 +33,11 @@ public class DozenBet implements BetCalculator {
         int dozen;
 
         if (number >= 1 && number <= 12) {
-            dozen = 1;
+            dozen = 0;
         } else if (number >= 13 && number <= 24) {
-            dozen = 2;
+            dozen = 1;
         } else {
-            dozen = 3;
+            dozen = 2;
         }
 
         // Check for the match

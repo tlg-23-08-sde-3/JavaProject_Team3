@@ -25,10 +25,15 @@ public class ANSI {
         return ANSI.Color.RED + text + ANSI.Color.RESET;
     }
 
+    public static String colorGreen(String text) {
+        return Color.GREEN + text + Color.RESET;
+    }
+
     // Foreground Colors
     public static enum Color {
         RESET("0m"),
         YELLOW("33m"),
+        GREEN("38;5;28m"),
         BRIGHT_YELLOW("93m"),
         RED("38;5;160m"),
         BLACK("30m"),
@@ -39,6 +44,7 @@ public class ANSI {
         PURPLE("38;5;92m"),
         MAGENTA("35m"),
         BRIGHT_MAGENTA("38;5;126m");
+
 
 
         private final String value;

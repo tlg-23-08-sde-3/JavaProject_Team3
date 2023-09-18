@@ -1,7 +1,7 @@
 package com.spincity.roulette.client;
 
-import com.spincity.roulette.BetType;
-import com.spincity.roulette.controller.Controller;
+import com.spincity.roulette.bet.BetType;
+import com.spincity.roulette.Controller;
 
 class Main {
 

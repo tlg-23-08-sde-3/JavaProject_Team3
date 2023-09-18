@@ -1,7 +1,8 @@
-package com.spincity.roulette;
+package com.spincity.roulette.account;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.spincity.roulette.utils.ANSI;
 
 import java.util.Scanner;
 
@@ -24,15 +25,15 @@ public class Login {
         int choice;
         do {
             System.out.println();
-            System.out.println("=======================");
-            System.out.println("CHOOSE THE RIGHT OPTION");
-            System.out.println("=======================");
+            System.out.println("===================================");
+            System.out.println("PLEASE SELECT AN OPTION TO CONTINUE");
+            System.out.println("===================================");
             System.out.println();
             System.out.println("1. Login to existing account");
             System.out.println("2. Create new account");
             System.out.println("3. Exit the Game");
             System.out.println();
-            choice = Integer.parseInt(prompter.prompt("Enter your choice:" , "(1|2|3)", "\nInvalid choice. Please select 1,2 or 3.\n"));
+            choice = Integer.parseInt(prompter.prompt("\nMake a selection: " , "(1|2|3)", ANSI.colorRed("\nInvalid choice. Please select 1,2 or 3.")));
 
             switch (choice) {
                 case 1:
@@ -48,7 +49,7 @@ public class Login {
                         Console.clear();
                         account.getPlayer().setWantsToPlay(true);
                         System.out.println();
-                        System.out.println("Welcome back, " + account.getPlayer().getPlayerName() + "!");
+                        System.out.println("Welcome back, " + account.getPlayer().getName() + "!");
                         System.out.println("Your account balance is: $" + account.getPlayer().getAccountBalance() );
                         System.out.println();
                     }
@@ -69,12 +70,13 @@ public class Login {
                     } else {
                         account = Account.createNewAccount(playerName);
                         System.out.println();
-                        System.out.println("Account created! Your account ID is: " + account.getAccountId());
-                        prompter.prompt("Take note of your Account ID and then press enter to continue...");
+                        System.out.println("Account created! Your account ID is: " + account.getAccountId() + "\n");
+                        prompter.prompt("Press enter to continue...");
                     }
                     break;
                 case 3:
                     if (account == null) {
+                        System.out.println();
                         System.exit(0);
                     } else {
                         account.getPlayer().setWantsToPlay(false);
@@ -82,7 +84,7 @@ public class Login {
                     break;
                 default:
                     System.out.println( );
-                    System.out.println("Invalid choice. Please select 1,2 or 3.");
+                    System.out.println("Invalid choice. Please select 1,2 or 3.\n");
                     break;
             }
         } while (account == null);
