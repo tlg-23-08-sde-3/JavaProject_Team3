@@ -29,11 +29,11 @@ public class Login {
             System.out.println("CHOOSE THE RIGHT OPTION");
             System.out.println("=======================");
             System.out.println();
-            System.out.println("1. I have an account");
-            System.out.println("2. I'm a new player");
-            System.out.println("3. I don't like to play");
+            System.out.println("1. Login to existing account");
+            System.out.println("2. Create new account");
+            System.out.println("3. Exit the Game");
             System.out.println();
-            choice = Integer.parseInt(prompter.prompt("Enter your choice:" , "\\d{1,2,3}", "\nInvalid choice. Please select 1,2 or 3.\n"));
+            choice = Integer.parseInt(prompter.prompt("Enter your choice:" , "(1|2|3)", "\nInvalid choice. Please select 1,2 or 3.\n"));
 
             switch (choice) {
                 case 1:

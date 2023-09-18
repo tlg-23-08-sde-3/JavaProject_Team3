@@ -25,7 +25,7 @@ public enum Bet {
         DOZEN_25_TO_36;
     }
 
-    public static enum Coloumn {
+    public static enum Column {
         NO_GROUP,   // for zero
         COLUMN_1_TO_34,
         COLUMN_2_TO_35,
