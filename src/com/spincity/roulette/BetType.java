@@ -1,9 +1,11 @@
 package com.spincity.roulette;
 
 public enum BetType {
-    STRAIGHT_UP,
-    BASKET,
+    SINGLE_NUMBER,
+    DOZEN,
+    COLUMN,
     COLOR,
+    HIGH_LOW,
     EVEN_ODD;
 
     public static enum EvenOdd implements BetOption {
