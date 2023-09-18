@@ -1,25 +1,41 @@
 package com.spincity.roulette.controller;
 
 import com.apps.util.Console;
+import com.apps.util.Prompter;
+import com.spincity.roulette.Game;
 import com.spincity.roulette.Login;
+import com.spincity.roulette.Player;
+
+import java.util.Scanner;
 
 public class Controller {
+    Login login;
+    private final Prompter prompter = new Prompter(new Scanner(System.in));
+
+    public Controller() {
+        login = new Login();
+    }
+
     public void execute() throws Exception {
         splashScreen();
         welcome();
+        // Run until user selects exit at the login prompt
+        while (true) {
+            Player player = login.start();
 
-        Login login = new Login();
-        Login.start();
+            // Exit from entire application
+            if (!player.wantsToPlay()) {
+                break;
+            }
 
+            // Continue creating new game if user selects continue playing at the end of game screen
+            while (player.wantsToPlay()) {
+                Game game = new Game(player);
+                game.play();
+            }
+
+        }
     }
-
-
-        String input = prompter.prompt("Enter you login id: ");
-
-        Game game = new Game();
-        // TODO: returns whether user wants to continue playing
-        game.play();
-
 
 
     private void splashScreen() throws Exception {

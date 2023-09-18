@@ -12,8 +12,7 @@ public class Login {
         this.account = null;
     }
 
-    public static void start() {
-        Game game = new Game();
+    public Player start() {
         Prompter prompter = new Prompter(new Scanner(System.in));
         Console.clear();
         System.out.println();
@@ -47,11 +46,11 @@ public class Login {
                         System.out.println();
                     } else {
                         Console.clear();
+                        account.getPlayer().setWantsToPlay(true);
                         System.out.println();
                         System.out.println("Welcome back, " + account.getPlayer().getPlayerName() + "!");
                         System.out.println("Your account balance is: $" + account.getPlayer().getAccountBalance() );
                         System.out.println();
-                        game.selectBet(account.getPlayer());
                     }
                     break;
                 case 2:
@@ -72,11 +71,7 @@ public class Login {
                         System.out.println();
                         System.out.println("Account created! Your account ID is: " + account.getAccountId());
                         prompter.prompt("Take note of your Account ID and then press enter to continue...");
-                        game.selectBet(account.getPlayer());
                     }
-                    break;
-                case 3:
-                    System.exit(0);
                     break;
                 default:
                     System.out.println();
@@ -84,5 +79,7 @@ public class Login {
                     break;
             }
         } while (account == null);
+
+        return account.getPlayer();
     }
 }
