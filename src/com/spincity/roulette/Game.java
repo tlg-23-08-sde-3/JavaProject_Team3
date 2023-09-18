@@ -252,7 +252,7 @@ public class Game {
         JFrame frame = new JFrame("Wish you Good Luck");
 
         SwingUtilities.invokeLater(() -> {
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             Spinner spinner = new Spinner();
             frame.add(spinner);
             frame.setSize(655, 700);

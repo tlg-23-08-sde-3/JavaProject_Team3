@@ -5,10 +5,12 @@ import com.apps.util.Prompter;
 import com.spincity.roulette.Game;
 import com.spincity.roulette.Login;
 import com.spincity.roulette.Player;
+import com.spincity.roulette.SplashScreen;
 
 import java.util.Scanner;
 
 public class Controller {
+
     Login login;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
 
@@ -17,7 +19,6 @@ public class Controller {
     }
 
     public void execute() throws Exception {
-        splashScreen();
         welcome();
         // Run until user selects exit at the login prompt
         while (true) {
@@ -25,7 +26,7 @@ public class Controller {
 
             // Exit from entire application
             if (!player.wantsToPlay()) {
-                break;
+                System.exit(0);
             }
 
             // Continue creating new game if user selects continue playing at the end of game screen
@@ -37,16 +38,10 @@ public class Controller {
         }
     }
 
-
-    private void splashScreen() throws Exception {
-        System.out.println("Spin City With Lights!");
-        Thread.sleep(2000);
-        Console.clear();
-    }
-
     private void welcome() throws Exception {
-        System.out.println("Welcome to Roulette!");
-        Thread.sleep(2000);
+        SplashScreen splashScreen = new SplashScreen();
+        splashScreen.run();
+        Thread.sleep(5000);
         Console.clear();
     }
 

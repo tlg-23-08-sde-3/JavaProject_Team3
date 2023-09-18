@@ -1,28 +1,25 @@
 package com.spincity.roulette.bet;
 
 import com.spincity.roulette.Bet;
-import com.spincity.roulette.BetType;
 import com.spincity.roulette.SpinnerNumber;
+import com.spincity.roulette.BetType.SingleNumber;
 
-class EvenOddBet implements BetCalculator {
-    public Bet bet;
+public class SingleNumberBet implements BetCalculator {
+    private Bet bet;
 
-    public EvenOddBet(Bet bet) {
+    public SingleNumberBet(Bet bet) {
         setBet(bet);
     }
 
     @Override
     public double calculateWinLoss(SpinnerNumber spinnerNumber) {
+        int number = spinnerNumber.getNumber();
 
-        // Check if the spinnerNumber is even or odd
-        boolean isEven = spinnerNumber.getNumber() % 2 == 0;
-
-        if ((bet.getOption() == BetType.EvenOdd.EVEN && isEven) ||
-                (bet.getOption() == BetType.EvenOdd.ODD && !isEven)) {
+        if (bet.getOption() == SingleNumber.values()[number]) {
             return bet.getChip().value() * bet.getType().multiplier();
         }
 
-        // Return 0 if the bet is not a win
+        // Return 0 if no win
         return 0.0;
     }
 

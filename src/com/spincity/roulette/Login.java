@@ -73,8 +73,15 @@ public class Login {
                         prompter.prompt("Take note of your Account ID and then press enter to continue...");
                     }
                     break;
+                case 3:
+                    if (account == null) {
+                        System.exit(0);
+                    } else {
+                        account.getPlayer().setWantsToPlay(false);
+                    }
+                    break;
                 default:
-                    System.out.println();
+                    System.out.println( );
                     System.out.println("Invalid choice. Please select 1,2 or 3.");
                     break;
             }
