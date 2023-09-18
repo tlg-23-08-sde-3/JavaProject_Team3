@@ -1,21 +1,18 @@
 package com.spincity.roulette.controller;
 
 import com.apps.util.Console;
-import com.apps.util.Prompter;
-import com.spincity.roulette.Game;
-
-import java.util.Scanner;
+import com.spincity.roulette.Login;
 
 public class Controller {
     public void execute() throws Exception {
         splashScreen();
         welcome();
-        loginScreen();
+
+        Login login = new Login();
+        Login.start();
+
     }
 
-    private void loginScreen() {
-        // Login or SignUp
-        Prompter prompter = new Prompter(new Scanner(System.in));
 
         String input = prompter.prompt("Enter you login id: ");
 
@@ -23,10 +20,7 @@ public class Controller {
         // TODO: returns whether user wants to continue playing
         game.play();
 
-        // Ask for Input based on what was selected
 
-        // either displayBoard() or stay on loginScreen()
-    }
 
     private void splashScreen() throws Exception {
         System.out.println("Spin City With Lights!");

@@ -46,4 +46,19 @@ public class Bet {
     public void setOption(BetOption option) {
         this.option = option;
     }
+
+    public static enum Column {
+        NO_GROUP,   // for zero
+        COLUMN_1_TO_34,
+        COLUMN_2_TO_35,
+        COLUMN_3_TO_36;
+    }
+
+    public static enum LowHigh {
+        No_GROUP,   // for zero
+        LOW_1_TO_18,
+        HIGH_19_TO_36;
+    }
+
+
 }

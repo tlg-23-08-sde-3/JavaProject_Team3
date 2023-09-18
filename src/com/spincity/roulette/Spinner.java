@@ -1,8 +1,5 @@
 package com.spincity.roulette;
 
-import com.spincity.roulette.bet.BetCalculator;
-import com.spincity.roulette.bet.BettingFactory;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +10,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-interface SpinCompletionCallback {
-    void onSpinComplete(SpinnerNumber pickNumber);
-}
-
 public class Spinner extends JPanel implements ActionListener {
     private static final String IMAGE_PREFIX = "./images/Spinner/Roulette-"; // Roulette wheel images filename prefix
     private static final String WAV_FILE = "./images/Spinner/wheel.wav "; // Wheel Sound file (WAV format)
@@ -24,7 +17,6 @@ public class Spinner extends JPanel implements ActionListener {
     private static final int INITIAL_ANIMATION_DELAY = 50; // Initial milliseconds per image
     private static final int MAX_INCREASE_DELAY = 250; // Maximum additional delay per second
     private static final int SPIN_DURATION = 12500; // 12.5 seconds (to match the sound file length)
-    private static final int EXIT_DELAY = 10000; // show the winning number for 3 seconds before auto exit the frame
     private static final int[] WHEEL_ORDER = {0, 26, 3, 35, 12, 28, 7, 29, 18, 22, 9, 31, 14, 20, 1, 33, 16, 24, 5, 10, 23, 8, 30, 11, 36, 13, 27, 6, 34, 17, 25, 2, 21, 4, 19, 15, 32};
 
 
@@ -47,7 +39,7 @@ public class Spinner extends JPanel implements ActionListener {
 
         animationTimer = new Timer(INITIAL_ANIMATION_DELAY, this);
 
-        // Create and add the "Spin" button
+        // Create the spin button
         spinButton = new JButton("Spin");
         spinButton.addActionListener(new ActionListener() {
             @Override
@@ -62,6 +54,7 @@ public class Spinner extends JPanel implements ActionListener {
         // Create a panel for the button and add it to the frame's bottom
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(spinButton);
+        buttonPanel.setBackground(Color.WHITE);
         this.setLayout(new BorderLayout());
         this.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -118,38 +111,26 @@ public class Spinner extends JPanel implements ActionListener {
     private void stopSpinning() {
         // Stop the animation
         animationTimer.stop();
-
-        // Re-enable the "Spin" button
         spinButton.setEnabled(false);
         isSpinning = false;
 
         // Display the final number
-        System.out.println("Stopped at number: " + (currentImageIndex));
-        SpinnerNumber winningNumber;
+        int delayMilliseconds = 4000; // The time that the winning number display after spin ends
+        Timer delayTimer = new Timer(delayMilliseconds, (actionEvent) -> {
 
-        currentImageIndex = currentImageIndex == 0 ? NUM_IMAGES : currentImageIndex;
-        winningNumber = mapToSpinnerNumber(WHEEL_ORDER[currentImageIndex - 1]);
-        System.out.println("Winning number temp is: " + winningNumber);
+            //System.out.println("Stopped at number: " + (currentImageIndex));
+            SpinnerNumber winningNumber;
 
-        if (spinCompletionCallback != null) {
-            spinCompletionCallback.onSpinComplete(winningNumber);
-        }
+            currentImageIndex = currentImageIndex == 0 ? NUM_IMAGES : currentImageIndex;
+            winningNumber = mapToSpinnerNumber(WHEEL_ORDER[currentImageIndex - 1]);
+            //System.out.println("Winning number temp is: " + winningNumber);
 
-        // Start the exit timer
-        startExitTimer();
-    }
-
-    private void startExitTimer() {
-        // Exit code
-        Timer exitTimer = new Timer(EXIT_DELAY, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Exit the application after 3 seconds once the result is shown
-                System.exit(0);
+            if (spinCompletionCallback != null) {
+                spinCompletionCallback.onSpinComplete(winningNumber);
             }
         });
-        exitTimer.setRepeats(false); // Only trigger once
-        exitTimer.start();
+        delayTimer.setRepeats(false); // Don't repeat the timer
+        delayTimer.start();
     }
 
     @Override
@@ -160,9 +141,9 @@ public class Spinner extends JPanel implements ActionListener {
         }
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Loop through images
         String imagePath = IMAGE_PREFIX + currentImageIndex + ".jpg"; // Image path
         try {
             currentImage = new ImageIcon(imagePath).getImage();
