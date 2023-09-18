@@ -49,7 +49,9 @@ public class Game {
         while (true) {
             refreshScreen();
             Bet bet = betSelection();
+            player.subtractAmount(bet.getChip().value());
             bets.add(bet);
+
 
             refreshScreen();
             System.out.println("***********************************************");
@@ -145,11 +147,7 @@ public class Game {
                 );
 
                 String colorInput = prompter.prompt("Select a color (1-2): ", "[1-2]", errorMessageInvalidSelection());
-                if (colorInput.equals("1")) {
-                    betOption = BetType.Color.RED;
-                } else {
-                    betOption = BetType.Color.BLACK;
-                }
+                betOption = colorInput.equals("1") ? BetType.Color.RED : BetType.Color.BLACK;
 
                 break;
 
@@ -162,11 +160,6 @@ public class Game {
 
                 String evenOddInput = prompter.prompt("Select an option (1-2): ", "[1-2]", errorMessageInvalidSelection());
                 betOption = evenOddInput.equals("1") ? BetType.EvenOdd.EVEN : BetType.EvenOdd.ODD;
-                if (evenOddInput.equals("1")) {
-                    betOption = BetType.EvenOdd.EVEN;
-                } else {
-                    betOption = BetType.EvenOdd.ODD;
-                }
 
                 break;
 
@@ -226,12 +219,14 @@ public class Game {
         for (int i = 0; i < chips.length; i++) {
             amountSelectionBuilder.append("\t")
                     .append(i + 1)
-                    .append(" ")
+                    .append(". ")
                     .append(chips[i].getChip())
                     .append(" ")
                     .append(chips[i].value())
                     .append("\n");
         }
+
+        System.out.println(amountSelectionBuilder);
 
         while (true) {
 
@@ -243,7 +238,7 @@ public class Game {
             double amountToValidate = selectedChip.value();
 
             if (amountToValidate > player.getAccountBalance()) {
-                System.out.printf(colorRed("Insufficient Balance!") + " Current account balance is $%,.2f\n\n", player.getAccountBalance());
+                System.out.printf(colorRed("Insufficient Balance!") + " Maximum bet you can place is $%,.2f\n\n", player.getAccountBalance());
                 continue;
             }
 

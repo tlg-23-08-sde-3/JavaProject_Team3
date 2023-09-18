@@ -15,7 +15,7 @@ class ColorBet implements BetCalculator {
         // Do some calculation
 
         if (bet.getOption().equals(spinnerNumber.color())) {
-            return bet.getAmount() * bet.getType().multiplier();
+            return bet.getChip().value() * bet.getType().multiplier();
         }
 
         return 0.0;
