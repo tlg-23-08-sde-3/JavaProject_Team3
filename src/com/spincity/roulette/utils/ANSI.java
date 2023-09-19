@@ -66,7 +66,9 @@ public class ANSI {
     // Background Colors
     public static enum BackgroundColor {
         GREEN("48;5;28m"),
+        BLACK("48;5;0m"),
         BRIGHT_GREEN("102m");
+
 
         private final String value;
 
