@@ -20,18 +20,18 @@ public class ColumnBet implements BetCalculator {
         }
 
         // Determine which column the spinner number is in
-        int column;
+        Column selectedColumn;
 
         if (number % 3 == 1) {
-            column = 0;
+           selectedColumn = Column.COLUMN_1_ENDS_34;
         } else if (number % 3 == 2) {
-            column = 1;
+            selectedColumn = Column.COLUMN_2_ENDS_35;
         } else {
-            column = 2;
+            selectedColumn = Column.COLUMN_3_ENDS_36;
         }
 
         // Check the user bet with spinner column
-        if (bet.getOption() == Column.values()[column]) {
+        if (bet.getOption() == selectedColumn) {
             return bet.getChip().value() * bet.getType().multiplier();
         }
 
