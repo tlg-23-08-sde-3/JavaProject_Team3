@@ -12,38 +12,82 @@ public class SplashScreen {
     private ImageIcon[] imageIcons;
     private int currentImageIndex;
     private Timer timer;
+    private int numOfImages;
+    private boolean needsLoop;
+    private int imageFrameTime = 250;
 
-    public SplashScreen() {
+    public SplashScreen(String imageFolderName) {
         // Initialize the JFrame
         frame = new JFrame();
-        frame.setSize(1200, 600);
+
+        switch (imageFolderName) {
+            case "Welcome":
+                numOfImages = 3;
+                frame.setSize(1200, 800);
+                imageFrameTime = 500;
+                break;
+            case "Splash":
+                needsLoop = true;
+                numOfImages = 2;
+                frame.setSize(1200, 600);
+                break;
+            case "Win":
+                numOfImages = 7;
+                frame.setSize(1200, 686);
+                break;
+            case "Lost":
+                numOfImages = 4;
+                frame.setSize(1200, 686);
+                break;
+            default:
+                break;
+        }
+
         frame.toFront();
         frame.setAlwaysOnTop(true);
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
 
         // Load the images into array
-        imageIcons = new ImageIcon[2];
-        for (int i = 0; i < 2; i++) {
-            imageIcons[i] = new ImageIcon("./images/Splash/splash-" + (i + 1) + ".jpg");
+        imageIcons = new ImageIcon[numOfImages];
+        for (int i = 0; i < numOfImages; i++) {
+            imageIcons[i] = new ImageIcon("./images/" + imageFolderName + "/image-" + (i + 1) + ".jpg");
         }
 
         // Initialize the JLabel to display images
         imageLabel = new JLabel();
         frame.add(imageLabel, BorderLayout.CENTER);
 
-        // Initialize the timer to change images every 200 milliseconds
-        timer = new Timer(200, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Update the current image index
-                currentImageIndex = (currentImageIndex + 1) % imageIcons.length;
-                // Set the new image on the JLabel
-                imageLabel.setIcon(imageIcons[currentImageIndex]);
-            }
-        });
 
-        // Start the timer
+        if (needsLoop) {
+            timer = new Timer(200, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Update the current image index
+                    currentImageIndex = (currentImageIndex + 1) % imageIcons.length;
+                    // Set the new image on the JLabel
+                    imageLabel.setIcon(imageIcons[currentImageIndex]);
+                }
+            });
+
+        }
+        else {
+            timer = new Timer(imageFrameTime, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Update the current image index
+                    currentImageIndex = (currentImageIndex + 1);
+                    // Set the new image on the JLabel
+                    if (currentImageIndex == numOfImages) {
+                        imageLabel.setIcon(imageIcons[currentImageIndex-1]);
+                        timer.stop();
+                    }
+                    else {
+                        imageLabel.setIcon(imageIcons[(currentImageIndex-1)]);
+                    }
+                }
+            });
+        }
         timer.start();
 
         // Schedule the frame to close after 5 seconds
@@ -66,8 +110,8 @@ public class SplashScreen {
         });
     }
 
-//    public static void main(String[] args) {
-//        SplashScreen app = new SplashScreen();
-//        app.run();
-//    }
+    public static void main(String[] args) {
+        SplashScreen app = new SplashScreen("Welcome");
+        app.run();
+    }
 }
