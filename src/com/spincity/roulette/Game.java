@@ -7,14 +7,11 @@ import com.apps.util.Prompter;
 import com.spincity.roulette.bet.*;
 import com.spincity.roulette.account.Account;
 import com.spincity.roulette.account.Player;
-import com.spincity.roulette.spinner.SpinCompletionCallback;
-import com.spincity.roulette.spinner.Spinner;
+import com.spincity.roulette.spinner.RouletteWheel;
 import com.spincity.roulette.spinner.SpinnerNumber;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import javax.swing.*;
 import java.util.Scanner;
 
 public class Game {
@@ -27,7 +24,6 @@ public class Game {
     private List<Bet> bets;
     private Player player;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
-    private final CountDownLatch latch = new CountDownLatch(1);
 
     public static void main(String[] args) {
         // TODO: Remove in final version
@@ -280,37 +276,9 @@ public class Game {
     }
 
     public void displaySpinner() {
-        JFrame frame = new JFrame("Wish you Good Luck");
-
-        SwingUtilities.invokeLater(() -> {
-            frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            Spinner spinner = new Spinner();
-            frame.add(spinner);
-            frame.setSize(655, 700);
-            frame.setVisible(true);
-            frame.setLocationRelativeTo(null);
-            frame.toFront();
-            frame.setAlwaysOnTop(true);
-
-            spinner.spin(new SpinCompletionCallback() {
-                @Override
-                public void onSpinComplete(SpinnerNumber pickedNumber) {
-//                    System.out.println(pickedNumber);
-                    winningNumber = pickedNumber;
-                    latch.countDown();
-
-                }
-            });
-        });
-
-        // Exits the Spinner JFrame when you hit exit or after delay timer
-        try {
-            latch.await(); // Wait for the Swing event to complete
-            frame.dispose(); // Exit the spinner wheel frame here
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        RouletteWheel rouletteWheel = new RouletteWheel();
+        int pickedNumber = rouletteWheel.run();
+        winningNumber = SpinnerNumber.values()[pickedNumber];
     }
 
     public String errorMessageInvalidSelection() {

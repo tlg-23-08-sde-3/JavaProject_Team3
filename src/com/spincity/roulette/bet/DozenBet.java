@@ -1,10 +1,7 @@
 package com.spincity.roulette.bet;
 
-import com.spincity.roulette.Board;
 import com.spincity.roulette.spinner.SpinnerNumber;
 import com.spincity.roulette.bet.BetType.Dozen;
-
-import static com.spincity.roulette.bet.BetType.Dozen.*;
 
 public class DozenBet implements BetCalculator {
     private Bet bet;
@@ -13,35 +10,27 @@ public class DozenBet implements BetCalculator {
         setBet(bet);
     }
 
-    public static void main(String[] args) {
-        DozenBet dozenBet = new DozenBet(new Bet(BetType.DOZEN , DOZEN_13_TO_24, Board.Chip.CHIP_100));
-        double result = dozenBet.calculateWinLoss(SpinnerNumber.FIFTEEN);
-        System.out.println(result);
-        }
-
     @Override
     public double calculateWinLoss(SpinnerNumber spinnerNumber) {
         int number = spinnerNumber.getNumber();
-        BetOption dozenOption = bet.getOption();
 
         // Check if the spinner number is "0"
         if (number == 0) {
             return 0.0;
         }
 
-        // Determine which dozen the spinner number belongs to
-        int dozen;
+        Dozen selectedDozen;
 
         if (number >= 1 && number <= 12) {
-            dozen = 0;
+            selectedDozen = Dozen.DOZEN_1_TO_12;
         } else if (number >= 13 && number <= 24) {
-            dozen = 1;
+            selectedDozen = Dozen.DOZEN_13_TO_24;
         } else {
-            dozen = 2;
+            selectedDozen = Dozen.DOZEN_25_TO_36;
         }
 
-        // Check for the match
-        if (bet.getOption() == Dozen.values()[dozen]) {
+        // Check for match
+        if (bet.getOption() == selectedDozen) {
             return bet.getChip().value() * bet.getType().multiplier();
         }
 
