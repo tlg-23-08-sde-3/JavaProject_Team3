@@ -23,6 +23,7 @@ public class Game {
     private Player player;
     private SplashScreen splashScreen;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
+    private final int frameDelayTimer = 5000;
 
     public static void main(String[] args) throws InterruptedException {
         // TODO: Remove in final version
@@ -74,18 +75,17 @@ public class Game {
 
         /*
          * Display Win/Lose Screen
-         * TODO: A splash screen or console based ASCII of "You Won" or "You Did Not Win"
          */
         System.out.println("\nThe winning number is " + colorGreen(String.valueOf(winningNumber.getNumber())) + Color.RESET +
                 " & Color is " + winningNumber.color() + "\n");
 
         if (amountWon == 0.0) {
-            Thread.sleep(2000);
+            Thread.sleep(frameDelayTimer);
             splashScreen = new SplashScreen("Lost");
             splashScreen.run();
             System.out.println(colorRed("\nSorry! you did not win anything. Better luck next time!\n"));
         } else {
-            Thread.sleep(2000);
+            Thread.sleep(frameDelayTimer);
             splashScreen = new SplashScreen("Win");
             splashScreen.run();
             System.out.printf(colorGreen("Congratulations! You won $%,.2f\n"), amountWon);
@@ -106,9 +106,14 @@ public class Game {
             System.out.println("***********************************************");
             System.out.println("**  Increase your odds by adding another bet **");
             System.out.println("***********************************************\n");
-            String continueInput = prompter.prompt("Would you like to add another bet (Y/N): ", "[YyNn]", errorMessageInvalidEntry());
 
-            if (continueInput.equals("N") || continueInput.equals("n")) {
+            if (player.getAccountBalance() > 0.0) {
+                String continueInput = prompter.prompt("Would you like to add another bet (Y/N): ", "[YyNn]", errorMessageInvalidEntry());
+                if (continueInput.equals("N") || continueInput.equals("n")) {
+                    break;
+                }
+            } else {
+                prompter.prompt(colorRed("Sorry! Insufficient funds to place another bet!\n") + "Press enter to continue with existing bets.");
                 break;
             }
         }
