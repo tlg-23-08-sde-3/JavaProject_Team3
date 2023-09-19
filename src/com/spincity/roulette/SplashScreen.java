@@ -22,14 +22,13 @@ public class SplashScreen {
 
         switch (imageFolderName) {
             case "Welcome":
-                numOfImages = 3;
+                numOfImages = 11;
                 frame.setSize(1200, 800);
-                imageFrameTime = 500;
                 break;
             case "Splash":
                 needsLoop = true;
                 numOfImages = 2;
-                frame.setSize(1200, 600);
+                frame.setSize(1200, 800);
                 break;
             case "Win":
                 numOfImages = 7;
@@ -111,7 +110,7 @@ public class SplashScreen {
     }
 
     public static void main(String[] args) {
-        SplashScreen app = new SplashScreen("Welcome");
+        SplashScreen app = new SplashScreen("Splash");
         app.run();
     }
 }
