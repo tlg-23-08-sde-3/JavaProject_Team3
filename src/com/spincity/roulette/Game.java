@@ -21,9 +21,10 @@ public class Game {
     private SpinnerNumber winningNumber;
     private final List<Bet> bets;
     private Player player;
+    private SplashScreen splashScreen;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO: Remove in final version
         Account account = Account.createNewAccount("Kobi");
         Player testPlayer = account.getPlayer();
@@ -37,7 +38,7 @@ public class Game {
         bets = new ArrayList<>();
     }
 
-    public void play() {
+    public void play() throws InterruptedException {
         promptUserToSelectBet();
         displaySpinner();
         showWonOrLostScreen();
@@ -63,7 +64,7 @@ public class Game {
         System.out.printf(" Player Name: %-55s %30s\n", player.getName(), accountBalanceText);
     }
 
-    private void showWonOrLostScreen() {
+    private void showWonOrLostScreen() throws InterruptedException {
         refreshScreen();
         /*
          * Calculate Winnings
@@ -79,8 +80,14 @@ public class Game {
                 " & Color is " + winningNumber.color() + "\n");
 
         if (amountWon == 0.0) {
+            Thread.sleep(2000);
+            splashScreen = new SplashScreen("Lost");
+            splashScreen.run();
             System.out.println(colorRed("\nSorry! you did not win anything. Better luck next time!\n"));
         } else {
+            Thread.sleep(2000);
+            splashScreen = new SplashScreen("Win");
+            splashScreen.run();
             System.out.printf(colorGreen("Congratulations! You won $%,.2f\n"), amountWon);
             System.out.printf("Your new account Balance is: $%,.2f\n", player.getAccountBalance());
             System.out.println();
