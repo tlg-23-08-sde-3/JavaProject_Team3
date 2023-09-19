@@ -6,6 +6,7 @@ import com.spincity.roulette.Game;
 import com.spincity.roulette.account.Login;
 import com.spincity.roulette.account.Player;
 import com.spincity.roulette.SplashScreen;
+import com.spincity.roulette.utils.ANSI;
 
 import java.util.Scanner;
 
@@ -31,6 +32,10 @@ public class Controller {
             }
 
             // Continue creating new game if user selects continue playing at the end of game screen
+            if (player.getAccountBalance() < 0) {
+               prompter.prompt(ANSI.colorRed("Insufficient funds to play game!\n") + "Press enter to go back to the login screen to add funds to your account!");
+            }
+
             while (player.wantsToPlay()) {
                 Game game = new Game(player);
                 game.play();
