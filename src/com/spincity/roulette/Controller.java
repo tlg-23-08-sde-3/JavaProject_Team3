@@ -45,12 +45,9 @@ public class Controller {
     }
 
     private void welcome() throws Exception {
-        splashScreen = new SplashScreen("Splash");
-        splashScreen.run();
-        Thread.sleep(5000);
         splashScreen = new SplashScreen("Welcome");
         splashScreen.run();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         Console.clear();
     }
 

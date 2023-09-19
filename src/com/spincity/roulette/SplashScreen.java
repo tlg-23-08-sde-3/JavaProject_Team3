@@ -15,6 +15,7 @@ public class SplashScreen {
     private int numOfImages;
     private boolean needsLoop;
     private int imageFrameTime = 250;
+    private int frameLengthTime = 5000;
 
     public SplashScreen(String imageFolderName) {
         // Initialize the JFrame
@@ -22,8 +23,10 @@ public class SplashScreen {
 
         switch (imageFolderName) {
             case "Welcome":
-                numOfImages = 11;
+                numOfImages = 50;
                 frame.setSize(1200, 800);
+                imageFrameTime = 200;
+                frameLengthTime = 10000;
                 break;
             case "Splash":
                 needsLoop = true;
@@ -90,7 +93,7 @@ public class SplashScreen {
         timer.start();
 
         // Schedule the frame to close after 5 seconds
-        Timer exitTimer = new Timer(5000, new ActionListener() {
+        Timer exitTimer = new Timer(frameLengthTime, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // Close the frame
@@ -109,8 +112,8 @@ public class SplashScreen {
         });
     }
 
-    public static void main(String[] args) {
-        SplashScreen app = new SplashScreen("Splash");
-        app.run();
-    }
+//    public static void main(String[] args) {
+//        SplashScreen app = new SplashScreen("Welcome");
+//        app.run();
+//    }
 }
