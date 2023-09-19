@@ -3,24 +3,31 @@ package com.spincity.roulette.bet;
 import com.spincity.roulette.Board.BoardElement;
 
 public enum BetType {
-    SINGLE_NUMBER(36),
-    DOZEN(3),
-    COLUMN(3),
-    COLOR(2),
-    HIGH_LOW(2),
-    EVEN_ODD(2);
+    SINGLE_NUMBER(36, "Number Bet"),
+    DOZEN(3, "Dozen Bet"),
+    COLUMN(3, "Column Bet"),
+    COLOR(2, "Color Bet"),
+    HIGH_LOW(2, "High/Low Bet"),
+    EVEN_ODD(2, "Even/Odd Bet");
 
     private final int multiplier;
+    private final String menuText;
 
-    BetType(int multiplier) {
+    BetType(int multiplier, String menuText ) {
         this.multiplier = multiplier;
+        this.menuText = menuText;
     }
 
     public int multiplier() {
         return multiplier;
     }
 
-    public static enum EvenOdd implements BetOption {
+    public String menuText() {
+        return menuText;
+    }
+
+
+    public enum EvenOdd implements BetOption {
         EVEN(BoardElement.EVEN),
         ODD(BoardElement.ODD);
 
@@ -35,7 +42,7 @@ public enum BetType {
         }
     }
 
-    public static enum Color implements BetOption {
+    public enum Color implements BetOption {
         RED(BoardElement.RED),
         BLACK(BoardElement.BLACK),
         NO_COLOR(BoardElement.ZERO);  // for Zero
@@ -51,7 +58,7 @@ public enum BetType {
         }
     }
 
-    public static enum Dozen implements BetOption {
+    public enum Dozen implements BetOption {
         DOZEN_1_TO_12(BoardElement.DOZEN_1_TO_12),
         DOZEN_13_TO_24(BoardElement.DOZEN_13_TO_24),
         DOZEN_25_TO_36(BoardElement.DOZEN_25_TO_36);
@@ -67,7 +74,7 @@ public enum BetType {
         }
     }
 
-    public static enum Column implements BetOption {
+    public enum Column implements BetOption {
         COLUMN_1_ENDS_34(BoardElement.COLUMN_1_ENDS_34),
         COLUMN_2_ENDS_35(BoardElement.COLUMN_2_ENDS_35),
         COLUMN_3_ENDS_36(BoardElement.COLUMN_3_ENDS_36);
@@ -83,7 +90,7 @@ public enum BetType {
         }
     }
 
-    public static enum HighLow implements BetOption {
+    public enum HighLow implements BetOption {
         LOW_1_TO_18(BoardElement.LOW_1_TO_18),
         HIGH_19_TO_36(BoardElement.HIGH_19_TO_36);
 
@@ -98,7 +105,7 @@ public enum BetType {
         }
     }
 
-    public static enum SingleNumber implements BetOption {
+    public enum SingleNumber implements BetOption {
         ZERO(0, BoardElement.ZERO),
         ONE(1, BoardElement.ONE),
         TWO(2, BoardElement.TWO),

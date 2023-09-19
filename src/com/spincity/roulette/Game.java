@@ -98,6 +98,25 @@ public class Game {
     }
 
     private Bet betSelection() {
+
+        System.out.println("Bet Types \n");
+        BetType[] betTypes = BetType.values();
+
+        StringBuilder betTypeMenuBuilder = new StringBuilder();
+        for (int i = 0; i < betTypes.length; i++) {
+           BetType currBetType  = betTypes[i];
+           betTypeMenuBuilder.append("\b")
+                   .append(i+1)
+                   .append(". ")
+                   .append(currBetType.menuText())
+                   .append(" (")
+                   .append(currBetType.multiplier())
+                   .append("-to-1)\n");
+        }
+
+//        String betInput = prompter.prompt("Select a bet type: ", "[1-6]", errorMessageInvalidSelection());
+        
+
         System.out.println("Bet Types \n" +
                 "\t1. Number Bet" + " (" + BetType.SINGLE_NUMBER.multiplier() + "-to-1)" + "\n" +
                 "\t2. Dozen Bet" +" (" + BetType.DOZEN.multiplier() + "-to-1)" + "\n" +
