@@ -12,6 +12,11 @@ class EvenOddBet implements BetCalculator {
     @Override
     public double calculateWinLoss(SpinnerNumber spinnerNumber) {
 
+        // Zero is not considered even/odd in roulette
+        if (spinnerNumber.getNumber() == 0) {
+            return 0.0;
+        }
+
         // Check if the spinnerNumber is even or odd
         boolean isEven = spinnerNumber.getNumber() % 2 == 0;
 
