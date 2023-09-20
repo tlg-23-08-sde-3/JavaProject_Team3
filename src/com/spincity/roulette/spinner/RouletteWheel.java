@@ -1,5 +1,7 @@
 package com.spincity.roulette.spinner;
 
+import com.spincity.roulette.utils.Sleep;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -68,7 +70,7 @@ public class RouletteWheel extends JFrame {
             while (isSpinning & (click != lastClick)) {
                 click++;
                 imageLabel.setIcon(images.get(++currentIndex));
-                sleep(pause += 2);
+                Sleep.sleep(pause += 2);
                 if (currentIndex == 36) {  // end of the List, reset index
                     currentIndex = 0;
                 }
@@ -116,10 +118,10 @@ public class RouletteWheel extends JFrame {
         startButton.setEnabled(false);
     }
 
-    private static void sleep(long millis) {
-        try { Thread.sleep(millis); }
-        catch (InterruptedException ignored) { }
-    }
+//    private static void sleep(long millis) {
+//        try { Thread.sleep(millis); }
+//        catch (InterruptedException ignored) { }
+//    }
 
     private void setFrameOptions() {
         setDefaultCloseOperation(HIDE_ON_CLOSE);

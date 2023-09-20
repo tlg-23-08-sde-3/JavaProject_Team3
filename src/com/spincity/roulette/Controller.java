@@ -46,7 +46,7 @@ public class Controller {
     }
 
     private void welcome() {
-        splashScreen = new SplashScreen("Welcome");
+        SplashScreen splashScreen = new SplashScreen("Welcome");
         splashScreen.run();
         pause(10000);
         Console.clear();
