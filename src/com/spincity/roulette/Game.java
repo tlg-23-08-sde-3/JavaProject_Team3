@@ -11,6 +11,7 @@ import com.spincity.roulette.account.Player;
 import com.spincity.roulette.bet.selection.BetSelection;
 import com.spincity.roulette.spinner.RouletteWheel;
 import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.utils.Sleep;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class Game {
         System.out.printf(" Player Name: %-55s %30s\n", player.getName(), accountBalanceText);
     }
 
-    private void showWonOrLostScreen() throws InterruptedException {
+    private void showWonOrLostScreen() {
         refreshScreen();
         /*
          * Calculate Winnings
@@ -79,7 +80,7 @@ public class Game {
 
         SplashScreen splashScreen;
         int frameDelayTimer = 5000;
-        Thread.sleep(frameDelayTimer);
+        Sleep.sleep(frameDelayTimer);
 
         if (amountWon == 0.0) {
             splashScreen = new SplashScreen("Lost");
