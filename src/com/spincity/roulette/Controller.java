@@ -36,13 +36,13 @@ public class Controller {
             }
 
             // Continue creating new game if user selects continue playing at the end of game screen
-            if (player.getAccountBalance() < 0) {
+            if (player.getAccountBalance() <= 0.0) {
                 prompter.prompt(ANSI.colorRed("Insufficient funds to play game!\n") + "Press enter to go back to the login screen to add funds to your account!");
-            }
-
-            while (player.wantsToPlay()) {
-                Game game = new Game(player);
-                game.play();
+            } else {
+                while (player.wantsToPlay()) {
+                    Game game = new Game(player);
+                    game.play();
+                }
             }
         }
 
