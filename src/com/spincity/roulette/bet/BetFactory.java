@@ -1,6 +1,6 @@
 package com.spincity.roulette.bet;
 
-public class BettingFactory {
+public class BetFactory {
 
     public static BetCalculator bettingStrategy(Bet bet) {
 

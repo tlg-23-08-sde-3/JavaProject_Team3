@@ -58,7 +58,7 @@ public class Game {
         }
     }
 
-    public void gameStats() {
+    private void gameStats() {
         String accountBalanceText = String.format("Account Balance: $%,.2f", player.getAccountBalance());
         System.out.printf(" Player Name: %-55s %30s\n", player.getName(), accountBalanceText);
     }
@@ -158,7 +158,7 @@ public class Game {
         double amountWon = 0.0;
 
         for (Bet bet : bets) {
-            BetCalculator betCalculator = BettingFactory.bettingStrategy(bet);
+            BetCalculator betCalculator = BetFactory.bettingStrategy(bet);
             assert betCalculator != null;
             amountWon += betCalculator.calculateWinLoss(winningNumber);
         }
