@@ -9,7 +9,7 @@ import com.spincity.roulette.utils.Banner;
 import java.util.Scanner;
 
 public class Login {
-    private static Account account;
+    private Account account;
 
     public Login() {
         this.account = null;

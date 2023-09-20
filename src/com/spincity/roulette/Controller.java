@@ -23,26 +23,29 @@ public class Controller {
 
     public void execute() throws Exception {
         welcome();
-        // Run until user selects exit at the login prompt
-        while (true) {
+
+        // Run until user selects exit at the login prompt.
+        boolean gameOver = false;
+        while (!gameOver) {
             Player player = login.start();
 
             // Exit from entire application
             if (!player.wantsToPlay()) {
-                System.exit(0);
+                gameOver = true;
+                continue;
             }
 
             // Continue creating new game if user selects continue playing at the end of game screen
             if (player.getAccountBalance() < 0) {
-               prompter.prompt(ANSI.colorRed("Insufficient funds to play game!\n") + "Press enter to go back to the login screen to add funds to your account!");
+                prompter.prompt(ANSI.colorRed("Insufficient funds to play game!\n") + "Press enter to go back to the login screen to add funds to your account!");
             }
 
             while (player.wantsToPlay()) {
                 Game game = new Game(player);
                 game.play();
             }
-
         }
+
     }
 
     private void welcome() {

@@ -9,7 +9,7 @@ public class Account {
     private Player player;
 
     // Account data will be stored in Hashmap
-    private static Map<Integer, Account> accountMap = new HashMap<>();
+    private static final Map<Integer, Account> accountMap = new HashMap<>();
 
     private Account(int accountId, Player player) {
         setAccountId(accountId);
