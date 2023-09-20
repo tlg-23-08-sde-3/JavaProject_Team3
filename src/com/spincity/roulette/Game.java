@@ -79,13 +79,15 @@ public class Game {
                 " & Color is " + winningNumber.color() + "\n");
 
         SplashScreen splashScreen;
-        int frameDelayTimer = 5000;
+        int frameDelayTimer = 10000;
         Sleep.sleep(frameDelayTimer);
 
         if (amountWon == 0.0) {
             splashScreen = new SplashScreen("Lost");
             splashScreen.run();
             System.out.println(colorRed("\nSorry! you did not win anything. Better luck next time!\n"));
+            System.out.printf("Your new account Balance is: $%,.2f\n", player.getAccountBalance());
+            System.out.println();
         } else {
             splashScreen = new SplashScreen("Win");
             splashScreen.run();
@@ -93,6 +95,9 @@ public class Game {
             System.out.printf("Your new account Balance is: $%,.2f\n", player.getAccountBalance());
             System.out.println();
         }
+
+        // Update accounts CSV on every win or loss
+        Account.saveAccountsToCsv();
     }
 
     private void promptUserToSelectBet() {

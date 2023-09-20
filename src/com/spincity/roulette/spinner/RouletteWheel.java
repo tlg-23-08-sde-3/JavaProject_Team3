@@ -90,7 +90,7 @@ public class RouletteWheel extends JFrame {
             try {
                 wait();
                 // Schedule the frame to close after 5 seconds
-                Timer timer = new Timer(5000, new ActionListener() {
+                Timer timer = new Timer(10000, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         RouletteWheel.this.dispose(); // Close the frame

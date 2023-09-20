@@ -6,7 +6,7 @@ import com.spincity.roulette.bet.BetType.Dozen;
 public class DozenBet extends BetCalculator {
 
     public DozenBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override

@@ -8,5 +8,5 @@ import com.spincity.roulette.Board;
  * Code to the interface, and not the implementation!
  */
 public interface BetOption {
-    public Board.BoardElement boardElement();
+    public Board.Element boardElement();
 }
