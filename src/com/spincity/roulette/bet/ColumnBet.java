@@ -3,8 +3,7 @@ package com.spincity.roulette.bet;
 import com.spincity.roulette.spinner.SpinnerNumber;
 import com.spincity.roulette.bet.BetType.Column;
 
-public class ColumnBet implements BetCalculator {
-    private Bet bet;
+public class ColumnBet extends BetCalculator {
 
     public ColumnBet(Bet bet) {
         setBet(bet);
@@ -31,19 +30,12 @@ public class ColumnBet implements BetCalculator {
         }
 
         // Check the user bet with spinner column
-        if (bet.getOption() == selectedColumn) {
-            return bet.getChip().value() * bet.getType().multiplier();
+        if (getBet().getOption() == selectedColumn) {
+            return getBet().getChip().value() * getBet().getType().multiplier();
         }
 
         // Return 0 if no win
         return 0.0;
     }
 
-    public Bet getBet() {
-        return bet;
-    }
-
-    public void setBet(Bet bet) {
-        this.bet = bet;
-    }
 }

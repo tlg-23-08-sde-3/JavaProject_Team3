@@ -3,8 +3,7 @@ package com.spincity.roulette.bet;
 import com.spincity.roulette.spinner.SpinnerNumber;
 import com.spincity.roulette.bet.BetType.Dozen;
 
-public class DozenBet implements BetCalculator {
-    private Bet bet;
+public class DozenBet extends BetCalculator {
 
     public DozenBet(Bet bet) {
         setBet(bet);
@@ -30,19 +29,12 @@ public class DozenBet implements BetCalculator {
         }
 
         // Check for match
-        if (bet.getOption() == selectedDozen) {
-            return bet.getChip().value() * bet.getType().multiplier();
+        if (getBet().getOption() == selectedDozen) {
+            return getBet().getChip().value() * getBet().getType().multiplier();
         }
 
         // Return 0 if not a win
         return 0.0;
     }
 
-    public Bet getBet() {
-        return bet;
-    }
-
-    public void setBet(Bet bet) {
-        this.bet = bet;
-    }
 }
