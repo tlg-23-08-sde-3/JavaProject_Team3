@@ -2,22 +2,21 @@ package com.spincity.roulette.account;
 
 public class Player {
     private String name;
-    private int accountId;
     private double accountBalance;
     private boolean wantsToPlay;
 
     public Player(String name) {
         setName(name);
         setWantsToPlay(true);
-        setAccountId(0);
         setAccountBalance(2500.0); // start the player with default play money of $2500
     }
 
-    public Player(int accountId) {
-        setAccountId(accountId);
+    public Player(double accountBalance) {
+        setAccountBalance(accountBalance);
     }
 
-    public Player(double accountBalance) {
+    public Player(String Name, double accountBalance) {
+        setName(Name);
         setAccountBalance(accountBalance);
     }
 
@@ -27,14 +26,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
     }
 
     public double getAccountBalance() {

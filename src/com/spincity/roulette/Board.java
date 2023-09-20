@@ -1,6 +1,6 @@
 package com.spincity.roulette;
 
-import static com.spincity.roulette.Board.BoardElement.*;
+import static com.spincity.roulette.Board.Element.*;
 
 import com.spincity.roulette.utils.ANSI;
 
@@ -17,7 +17,7 @@ public class Board {
 //    private static final String chip = ANSI.Color.BRIGHT_YELLOW + "●" + defaultForeground;
     private Chip chip;
     // State of board values: Not Selected = " ", Selected = "@";
-    private final Map<BoardElement, Chip> boardState;
+    private final Map<Element, Chip> boardState;
 
     public static void main(String[] args) {
         // TODO: remove in the final version
@@ -37,8 +37,8 @@ public class Board {
         boardState = new HashMap<>();
 
         // Initialize boardState with all elements — set initial state to be empty
-        for (BoardElement boardElement : BoardElement.values()) {
-            boardState.put(boardElement, null);
+        for (Element element : Element.values()) {
+            boardState.put(element, null);
         }
     }
 
@@ -82,14 +82,14 @@ public class Board {
         System.out.println(boardBuilder);
     }
 
-    public void placeChips(BoardElement boardElement, Chip chip) {
-        boardState.put(boardElement, chip);
+    public void placeChips(Element element, Chip chip) {
+        boardState.put(element, chip);
     }
 
     // Shows the Element + Element's Chip (if user selected it)
-    private String showElem(BoardElement boardElement) {
-        String chipString = boardState.get(boardElement) == null ? " " : boardState.get(boardElement).getChip();
-        return boardElement + chipString;
+    private String showElem(Element element) {
+        String chipString = boardState.get(element) == null ? " " : boardState.get(element).getChip();
+        return element + chipString;
     }
 
     // Remove all chips from the board
@@ -98,7 +98,7 @@ public class Board {
     }
 
     // Enum that represents element of the board.
-    public static enum BoardElement {
+    public static enum Element {
         ZERO("0", ANSI.Color.WHITE),
         ONE("1", ANSI.Color.RED),
         TWO("2", ANSI.Color.BLACK),
@@ -154,12 +154,12 @@ public class Board {
         // For Column Bets — The display value for all Column is "2To1", so this field is used just on them.
         private String displayValue; // If display value on the board is different text than actual value
 
-        BoardElement(String value, ANSI.Color color) {
+        Element(String value, ANSI.Color color) {
             this.value = value;
             this.color = color;
         }
 
-        BoardElement(String value, ANSI.Color color, String displayValue) {
+        Element(String value, ANSI.Color color, String displayValue) {
             this(value, color);
             this.displayValue = displayValue;
         }

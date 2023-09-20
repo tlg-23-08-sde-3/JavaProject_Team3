@@ -6,7 +6,7 @@ import com.spincity.roulette.bet.BetType.HighLow;
 public class HighLowBet extends BetCalculator {
 
     public HighLowBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override

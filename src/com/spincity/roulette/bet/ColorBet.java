@@ -5,7 +5,7 @@ import com.spincity.roulette.spinner.SpinnerNumber;
 class ColorBet extends BetCalculator {
 
     public ColorBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.spincity.roulette.bet.BetType.SingleNumber;
 public class SingleNumberBet extends BetCalculator {
 
     public SingleNumberBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override

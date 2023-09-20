@@ -5,7 +5,7 @@ import com.spincity.roulette.spinner.SpinnerNumber;
 class EvenOddBet extends BetCalculator {
 
     public EvenOddBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override

@@ -2,10 +2,8 @@ package com.spincity.roulette;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
-import com.spincity.roulette.Game;
-import com.spincity.roulette.account.Login;
+import com.spincity.roulette.account.Account;
 import com.spincity.roulette.account.Player;
-import com.spincity.roulette.SplashScreen;
 import com.spincity.roulette.utils.ANSI;
 
 import java.util.Scanner;
@@ -22,7 +20,7 @@ public class Controller {
     }
 
     public void execute() throws Exception {
-        welcome();
+//        welcome();
 
         // Run until user selects exit at the login prompt.
         boolean gameOver = false;
@@ -45,6 +43,9 @@ public class Controller {
                 }
             }
         }
+
+        // Save all accounts to CSV when the application exits
+        Account.saveAccountsToCsv();
 
     }
 

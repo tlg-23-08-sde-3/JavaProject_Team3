@@ -11,3 +11,6 @@
 
 # macOS
 .DS_Store
+
+# User Account External Ad-Hoc File
+data/

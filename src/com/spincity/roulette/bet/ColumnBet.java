@@ -6,7 +6,7 @@ import com.spincity.roulette.bet.BetType.Column;
 public class ColumnBet extends BetCalculator {
 
     public ColumnBet(Bet bet) {
-        setBet(bet);
+        super(bet);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ColumnBet extends BetCalculator {
         Column selectedColumn;
 
         if (number % 3 == 1) {
-           selectedColumn = Column.COLUMN_1_ENDS_34;
+            selectedColumn = Column.COLUMN_1_ENDS_34;
         } else if (number % 3 == 2) {
             selectedColumn = Column.COLUMN_2_ENDS_35;
         } else {

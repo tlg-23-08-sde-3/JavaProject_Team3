@@ -1,9 +1,13 @@
-package com.spincity.roulette.account;
+package com.spincity.roulette;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.spincity.roulette.account.Account;
+import com.spincity.roulette.account.Player;
 import com.spincity.roulette.utils.ANSI;
+
 import static com.spincity.roulette.utils.ANSI.*;
+
 import com.spincity.roulette.utils.Banner;
 
 import java.util.Scanner;
@@ -29,14 +33,14 @@ public class Login {
             System.out.println("2. Create new account");
             System.out.println("3. Exit the Game");
             System.out.println();
-            choice = Integer.parseInt(prompter.prompt("\nMake a selection (1-3): " , "[123]", ANSI.colorRed("\nInvalid choice. Please select 1,2 or 3.")));
+            choice = Integer.parseInt(prompter.prompt("\nMake a selection (1-3): ", "[123]", ANSI.colorRed("\nInvalid choice. Please select 1,2 or 3.")));
 
             switch (choice) {
                 case 1:
                     Console.clear();
                     Banner.banner();
                     System.out.println();
-                    int accountId = Integer.parseInt(prompter.prompt("Enter your account ID: ", "\\d{4}" , colorRed("\nPlease enter your 4 digit account ID\n") ));
+                    int accountId = Integer.parseInt(prompter.prompt("Enter your account ID: ", "\\d{4}", colorRed("\nPlease enter your 4 digit account ID\n")));
                     account = Account.getAccount(accountId);
                     if (account == null) {
                         System.out.println();
@@ -48,8 +52,8 @@ public class Login {
                         account.getPlayer().setWantsToPlay(true);
                         System.out.println();
                         System.out.println("Welcome back, " + account.getPlayer().getName() + "!");
-                        System.out.println("Your account balance is: $" + account.getPlayer().getAccountBalance() );
-                        prompter.prompt("\nPress enter to continue...");
+                        System.out.printf("Your account balance is: $%,.2f\n", account.getPlayer().getAccountBalance());
+                        prompter.prompt(colorYellow("\nPress enter to begin, and GOOD LUCK!"));
                         System.out.println();
                     }
                     break;
@@ -60,7 +64,7 @@ public class Login {
                     System.out.println("CREATE NEW ACCOUNT");
                     System.out.println();
                     String playerName = prompter.prompt("Enter your player name: ", "[A-Za-z]+", "\nProvide a valid name\n");
-                    int age = Integer.parseInt(prompter.prompt("Enter your age: ", "\\d{1,2}" , "\nAge is not valid to enter the game\n" ));
+                    int age = Integer.parseInt(prompter.prompt("Enter your age: ", "\\d{1,2}", "\nAge is not valid to enter the game\n"));
                     if (age < 21) {
                         System.out.println();
                         System.out.println(colorRed("You must be at least 21 years old to play."));
@@ -68,8 +72,8 @@ public class Login {
                     } else {
                         account = Account.createNewAccount(playerName);
                         System.out.println();
-                        System.out.println(colorGreen("Account created! Your account ID is: " + account.getAccountId() + "\n"));
-                        prompter.prompt("Press enter to continue...");
+                        System.out.printf(colorGreen("Account created! Your account ID is: %d. You account balance is: $%,.2f \n\n"), account.getAccountId(), account.getPlayer().getAccountBalance());
+                        prompter.prompt(colorYellow("Press enter to begin, and GOOD LUCK!"));
                     }
                     break;
                 case 3:
@@ -81,7 +85,7 @@ public class Login {
                     }
                     break;
                 default:
-                    System.out.println( );
+                    System.out.println();
                     System.out.println(colorRed("Invalid choice. Please select 1,2 or 3.\n"));
                     break;
             }
