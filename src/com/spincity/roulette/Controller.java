@@ -10,6 +10,8 @@ import com.spincity.roulette.utils.ANSI;
 
 import java.util.Scanner;
 
+import static com.apps.util.Console.pause;
+
 public class Controller {
 
     Login login;
@@ -44,10 +46,10 @@ public class Controller {
         }
     }
 
-    private void welcome() throws Exception {
+    private void welcome() {
         splashScreen = new SplashScreen("Welcome");
         splashScreen.run();
-        Thread.sleep(10000);
+        pause(10000);
         Console.clear();
     }
 
