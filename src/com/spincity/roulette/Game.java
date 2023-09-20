@@ -21,9 +21,7 @@ public class Game {
     private SpinnerNumber winningNumber;
     private final List<Bet> bets;
     private Player player;
-    private SplashScreen splashScreen;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
-    private final int frameDelayTimer = 5000;
 
     public static void main(String[] args) throws InterruptedException {
         // TODO: Remove in final version
@@ -79,13 +77,15 @@ public class Game {
         System.out.println("\nThe winning number is " + colorGreen(String.valueOf(winningNumber.getNumber())) + Color.RESET +
                 " & Color is " + winningNumber.color() + "\n");
 
+        SplashScreen splashScreen;
+        int frameDelayTimer = 5000;
+        Thread.sleep(frameDelayTimer);
+
         if (amountWon == 0.0) {
-            Thread.sleep(frameDelayTimer);
             splashScreen = new SplashScreen("Lost");
             splashScreen.run();
             System.out.println(colorRed("\nSorry! you did not win anything. Better luck next time!\n"));
         } else {
-            Thread.sleep(frameDelayTimer);
             splashScreen = new SplashScreen("Win");
             splashScreen.run();
             System.out.printf(colorGreen("Congratulations! You won $%,.2f\n"), amountWon);
@@ -95,7 +95,8 @@ public class Game {
     }
 
     private void promptUserToSelectBet() {
-        while (true) {
+        boolean userWantsToPlaceBet = true;
+        while (userWantsToPlaceBet) {
             refreshScreen();
             Bet bet = betSelection();
             player.subtractAmount(bet.getChip().value());
@@ -110,11 +111,11 @@ public class Game {
             if (player.getAccountBalance() > 0.0) {
                 String continueInput = prompter.prompt("Would you like to add another bet (Y/N): ", "[YyNn]", errorMessageInvalidEntry());
                 if (continueInput.equals("N") || continueInput.equals("n")) {
-                    break;
+                    userWantsToPlaceBet = false;
                 }
             } else {
                 prompter.prompt(colorRed("Sorry! Insufficient funds to place another bet!\n") + "Press enter to continue with existing bets.");
-                break;
+                userWantsToPlaceBet = false;
             }
         }
     }
