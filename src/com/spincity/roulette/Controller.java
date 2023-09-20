@@ -2,10 +2,8 @@ package com.spincity.roulette;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
-import com.spincity.roulette.Game;
 import com.spincity.roulette.account.Login;
 import com.spincity.roulette.account.Player;
-import com.spincity.roulette.SplashScreen;
 import com.spincity.roulette.utils.ANSI;
 
 import java.util.Scanner;
