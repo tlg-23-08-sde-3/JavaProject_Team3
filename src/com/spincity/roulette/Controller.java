@@ -12,8 +12,7 @@ import java.util.Scanner;
 
 public class Controller {
 
-    Login login;
-    private SplashScreen splashScreen;
+    private final Login login;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
 
     public Controller() {
@@ -45,7 +44,7 @@ public class Controller {
     }
 
     private void welcome() throws Exception {
-        splashScreen = new SplashScreen("Splash");
+        SplashScreen splashScreen = new SplashScreen("Splash");
         splashScreen.run();
         Thread.sleep(5000);
         splashScreen = new SplashScreen("Welcome");

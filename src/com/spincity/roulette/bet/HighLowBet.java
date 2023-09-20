@@ -3,8 +3,7 @@ package com.spincity.roulette.bet;
 import com.spincity.roulette.spinner.SpinnerNumber;
 import com.spincity.roulette.bet.BetType.HighLow;
 
-public class HighLowBet implements BetCalculator {
-    private Bet bet;
+public class HighLowBet extends BetCalculator {
 
     public HighLowBet(Bet bet) {
         setBet(bet);
@@ -23,21 +22,14 @@ public class HighLowBet implements BetCalculator {
         boolean isLow = number >= 1 && number <= 18;
         boolean isHigh = number >= 19 && number <= 36;
 
-        if (bet.getOption() == HighLow.LOW_1_TO_18 && isLow) {
-            return bet.getChip().value() * bet.getType().multiplier();
-        } else if (bet.getOption() == HighLow.HIGH_19_TO_36 && isHigh) {
-            return bet.getChip().value() * bet.getType().multiplier();
+        if (getBet().getOption() == HighLow.LOW_1_TO_18 && isLow) {
+            return getBet().getChip().value() * getBet().getType().multiplier();
+        } else if (getBet().getOption() == HighLow.HIGH_19_TO_36 && isHigh) {
+            return getBet().getChip().value() * getBet().getType().multiplier();
         }
 
         // Return 0 if no win
         return 0.0;
     }
 
-    public Bet getBet() {
-        return bet;
-    }
-
-    public void setBet(Bet bet) {
-        this.bet = bet;
-    }
 }

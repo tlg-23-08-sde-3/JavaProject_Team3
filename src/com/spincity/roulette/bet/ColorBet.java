@@ -2,8 +2,7 @@ package com.spincity.roulette.bet;
 
 import com.spincity.roulette.spinner.SpinnerNumber;
 
-class ColorBet implements BetCalculator {
-    public Bet bet;
+class ColorBet extends BetCalculator {
 
     public ColorBet(Bet bet) {
         setBet(bet);
@@ -13,19 +12,11 @@ class ColorBet implements BetCalculator {
     public double calculateWinLoss(SpinnerNumber spinnerNumber) {
         // Do some calculation
 
-        if (bet.getOption().equals(spinnerNumber.color())) {
-            return bet.getChip().value() * bet.getType().multiplier();
+        if (getBet().getOption().equals(spinnerNumber.color())) {
+            return getBet().getChip().value() * getBet().getType().multiplier();
         }
 
         return 0.0;
-    }
-
-    public Bet getBet() {
-        return bet;
-    }
-
-    public void setBet(Bet bet) {
-        this.bet = bet;
     }
 
 }
