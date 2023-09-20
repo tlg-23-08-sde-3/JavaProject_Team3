@@ -35,8 +35,7 @@ public class BetSelection {
 
         System.out.println(betTypeMenuBuilder);
         int betInput = Integer.parseInt(prompter.prompt("Select a bet type: ", "[1-6]", errorMessageInvalidSelection()));
-        BetType betType = betTypes[betInput - 1];
-        return betType;
+        return betTypes[betInput - 1]; // Array is 0-indexed, but user selection prompt starts at 1.
     }
 
     /*
@@ -72,12 +71,15 @@ public class BetSelection {
 
         System.out.println(amountSelectionBuilder);
 
-        while (true) {
-
+        /*
+         * Ask user for an amount to bet.
+         */
+        boolean userHasSelectedAnAmountToBet = false;
+        while (!userHasSelectedAnAmountToBet) {
             int amountIdxInput = Integer.parseInt(prompter.prompt("Select an amount (1-" + chips.length + "): ",
                     "[1-" + chips.length + "]", errorMessageInvalidSelection()));
 
-            // Array is 0-indexed, but for user selection we started at 1
+            // Array is 0-indexed, but for user selection starts at 1.
             selectedChip = chips[amountIdxInput - 1];
             double amountToValidate = selectedChip.value();
 
@@ -86,7 +88,7 @@ public class BetSelection {
                 continue;
             }
 
-            break;
+            userHasSelectedAnAmountToBet = true;
         }
 
         return selectedChip;

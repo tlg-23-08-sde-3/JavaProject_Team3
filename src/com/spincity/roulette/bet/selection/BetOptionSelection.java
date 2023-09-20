@@ -2,7 +2,6 @@ package com.spincity.roulette.bet.selection;
 
 import com.apps.util.Prompter;
 import com.spincity.roulette.bet.BetOption;
-import com.spincity.roulette.bet.BetType;
 
 import java.util.Scanner;
 
