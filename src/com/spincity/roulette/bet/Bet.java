@@ -20,6 +20,11 @@ public class Bet {
         setOption(option);
     }
 
+    public Bet(BetType betType, Board.Chip chip) {
+        this(betType);
+        setChip(chip);
+    }
+
     public Bet(BetType betType, BetOption option, Board.Chip chip) {
         this(betType, option);
         setChip(chip);

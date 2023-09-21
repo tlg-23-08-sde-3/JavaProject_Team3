@@ -2,7 +2,7 @@ package com.spincity.roulette.bet;
 
 import com.spincity.roulette.spinner.SpinnerNumber;
 
-class ColorBet extends BetCalculator {
+public class ColorBet extends BetCalculator {
 
     public ColorBet(Bet bet) {
         super(bet);
