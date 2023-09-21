@@ -1,11 +1,18 @@
 package com.spincity.roulette.bet.selection;
 
+import com.apps.util.Prompter;
 import com.spincity.roulette.bet.BetOption;
 import com.spincity.roulette.bet.BetType;
 
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;
 
 public class HighLowSelection extends BetOptionSelection {
+
+    private final Prompter prompter;
+
+    public HighLowSelection(Prompter prompter) {
+        this.prompter = prompter;
+    }
 
     @Override
     public BetOption select() {

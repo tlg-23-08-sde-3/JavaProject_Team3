@@ -1,11 +1,18 @@
 package com.spincity.roulette.bet.selection;
 
+import com.apps.util.Prompter;
 import com.spincity.roulette.bet.BetOption;
 import com.spincity.roulette.bet.BetType;
 
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;
 
 public class DozenSelection extends BetOptionSelection {
+
+    private final Prompter prompter;
+
+    public DozenSelection(Prompter prompter) {
+        this.prompter = prompter;
+    }
 
     @Override
     public BetOption select() {
