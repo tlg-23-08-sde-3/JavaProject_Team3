@@ -121,7 +121,7 @@ public class Game {
         BetOption betOption = null;
         Board.Chip chip = null;
 
-        BetSelection betSelection = new BetSelection();
+        BetSelection betSelection = new BetSelection(prompter);
 
         while (chip == null) {
             refreshScreen();

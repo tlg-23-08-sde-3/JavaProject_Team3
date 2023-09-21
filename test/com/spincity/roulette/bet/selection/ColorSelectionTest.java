@@ -12,34 +12,39 @@ import static org.junit.Assert.*;
 public class ColorSelectionTest {
 
     @Test
-    public void whenUserSelected_1_shouldReturn_red() throws Exception {
+    public void whenUserSelected_1_shouldReturn_red() {
         Prompter prompter = new Prompter(new Scanner("1"));
+        ColorSelection colorSelection = new ColorSelection(prompter);
+        colorSelection.select();
 
-        String colorInput = prompter.prompt("Select a color (1-2): ", "[1-2]", errorMessageInvalidSelection());
-        BetType.Color colorBet = colorInput.equals("1") ? BetType.Color.RED : BetType.Color.BLACK;
-
-        assertEquals(BetType.Color.RED, colorBet);
-
+        assertEquals(BetType.Color.RED, colorSelection.getBetOption());
     }
 
     @Test
-    public void whenUserSelected_2_shouldReturn_black() throws Exception {
+    public void whenUserSelected_2_shouldReturn_black() {
         Prompter prompter = new Prompter(new Scanner("2"));
+        ColorSelection colorSelection = new ColorSelection(prompter);
+        colorSelection.select();
 
-        String colorInput = prompter.prompt("Select a color (1-2): ", "[1-2]", errorMessageInvalidSelection());
-        BetType.Color colorBet = colorInput.equals("1") ? BetType.Color.RED : BetType.Color.BLACK;
-
-        assertEquals("2", colorInput);
-        assertEquals(BetType.Color.BLACK, colorBet);
+        assertEquals(BetType.Color.BLACK, colorSelection.getBetOption());
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenUserSelected_3_invalidInput() {
         Prompter prompter = new Prompter(new Scanner("3"));
+        ColorSelection colorSelection = new ColorSelection(prompter);
+        colorSelection.select();
 
-        String colorInput = prompter.prompt("Select a color (1-2): ", "[1-2]", errorMessageInvalidSelection());
+        assertNull(colorSelection.getBetOption());
+    }
 
-        assertNull(colorInput);
+    @Test(expected = NoSuchElementException.class)
+    public void whenUserSelected_abc_invalidInput() {
+        Prompter prompter = new Prompter(new Scanner("abc"));
+        ColorSelection colorSelection = new ColorSelection(prompter);
+        colorSelection.select();
+
+        assertNull(colorSelection.getBetOption());
     }
 
 }
