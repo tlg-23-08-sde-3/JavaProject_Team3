@@ -106,7 +106,7 @@ public class Account {
                 csvWriter.println(csvLine);
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
     }

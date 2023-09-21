@@ -8,6 +8,7 @@ import com.spincity.roulette.bet.BetType;
 
 import java.util.Scanner;
 
+import static com.spincity.roulette.utils.ANSI.colorGrey;
 import static com.spincity.roulette.utils.ANSI.colorRed;
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;
 
@@ -24,7 +25,7 @@ public class BetSelection {
         StringBuilder betTypeMenuBuilder = new StringBuilder();
         for (int i = 0; i < betTypes.length; i++) {
             BetType currBetType = betTypes[i];
-            betTypeMenuBuilder.append("\b")
+            betTypeMenuBuilder.append("  ")
                     .append(i + 1)
                     .append(". ")
                     .append(currBetType.menuText())
@@ -76,9 +77,15 @@ public class BetSelection {
          */
         boolean userHasSelectedAnAmountToBet = false;
         while (!userHasSelectedAnAmountToBet) {
-            int amountIdxInput = Integer.parseInt(prompter.prompt("Select an amount (1-" + chips.length + "): ",
-                    "[1-" + chips.length + "]", errorMessageInvalidSelection()));
+            String amountIdxString = prompter.prompt("Select an amount (1-" + chips.length + ") or enter " + colorGrey("\"x\"") + " to skip this bet: ",
+                    "([1-" + chips.length + "]|[Xx])", errorMessageInvalidSelection());
 
+            // Skip this bet
+            if ("x".equals(amountIdxString) || "X".equals(amountIdxString)) {
+                return selectedChip;  // Should return null
+            }
+
+            int amountIdxInput = Integer.parseInt(amountIdxString);
             // Array is 0-indexed, but for user selection starts at 1.
             selectedChip = chips[amountIdxInput - 1];
             double amountToValidate = selectedChip.value();
