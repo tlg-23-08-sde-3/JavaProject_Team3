@@ -8,10 +8,8 @@ import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelec
 
 public class ColorSelection extends BetOptionSelection {
 
-    private final Prompter prompter;
-
     public ColorSelection(Prompter prompter) {
-        this.prompter = prompter;
+        super(prompter);
     }
 
     @Override

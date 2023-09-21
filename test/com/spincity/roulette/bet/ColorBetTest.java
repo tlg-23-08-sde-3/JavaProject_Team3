@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class ColorBetTest {
 
     @Test
-        public void colorBetCalculator_returns2xWhenUserSelectedRedColor_spinnerPickedRedColorNumber() {
+    public void colorBetCalculator_returns2xWhenUserSelectedRedColor_spinnerPickedRedColorNumber() {
         Bet bet = new Bet(BetType.COLOR, BetType.Color.RED, Board.Chip.CHIP_100);
         BetCalculator betCalculator = new ColorBet(bet);
         double amountWon = betCalculator.calculateWinLoss(SpinnerNumber.ONE);
@@ -18,7 +18,7 @@ public class ColorBetTest {
     }
 
     @Test
-        public void colorBetCalculator_returns0xWhenUserSelectedRedColor_spinnerPickedBlackColorNumber() {
+    public void colorBetCalculator_returns0xWhenUserSelectedRedColor_spinnerPickedBlackColorNumber() {
         Bet bet = new Bet(BetType.COLOR, BetType.Color.RED, Board.Chip.CHIP_100);
         BetCalculator betCalculator = new ColorBet(bet);
         double amountWon = betCalculator.calculateWinLoss(SpinnerNumber.TWO);
@@ -26,7 +26,7 @@ public class ColorBetTest {
     }
 
     @Test
-        public void colorBetCalculator_returns2xWhenUserSelectedBlackColor_spinnerPickedBlackColorNumber() {
+    public void colorBetCalculator_returns2xWhenUserSelectedBlackColor_spinnerPickedBlackColorNumber() {
         Bet bet = new Bet(BetType.COLOR, BetType.Color.BLACK, Board.Chip.CHIP_100);
         BetCalculator betCalculator = new ColorBet(bet);
         double amountWon = betCalculator.calculateWinLoss(SpinnerNumber.TWO);
@@ -34,7 +34,7 @@ public class ColorBetTest {
     }
 
     @Test
-        public void colorBetCalculator_returns0xWhenUserSelectedBlackColor_spinnerPickedRedColorNumber() {
+    public void colorBetCalculator_returns0xWhenUserSelectedBlackColor_spinnerPickedRedColorNumber() {
         Bet bet = new Bet(BetType.COLOR, BetType.Color.BLACK, Board.Chip.CHIP_100);
         BetCalculator betCalculator = new ColorBet(bet);
         double amountWon = betCalculator.calculateWinLoss(SpinnerNumber.ONE);
