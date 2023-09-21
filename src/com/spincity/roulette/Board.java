@@ -19,20 +19,6 @@ public class Board {
     // State of board values: Not Selected = " ", Selected = "@";
     private final Map<Element, Chip> boardState;
 
-    public static void main(String[] args) {
-        // TODO: remove in the final version
-        // This Main Method is for Testing Only
-        Board board = new Board();
-        board.placeChips(TWELVE, Chip.CHIP_1);
-        board.placeChips(THIRTY_FOUR, Chip.CHIP_5);
-        board.placeChips(COLUMN_2_ENDS_35, Chip.CHIP_10);
-        board.placeChips(DOZEN_1_TO_12, Chip.CHIP_25);
-        board.placeChips(RED, Chip.CHIP_100);
-        board.placeChips(HIGH_19_TO_36, Chip.CHIP_500);
-        board.display();
-
-    }
-
     public Board() {
         boardState = new HashMap<>();
 

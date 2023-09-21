@@ -2,19 +2,12 @@ package com.spincity.roulette.utils;
 
 public class ANSI {
 
-    public static void main(String[] args) {
-        // For Testing Only
-        // TODO: remove in final version
-        String text = "text";
-        System.out.println(colorYellow(text));
-    }
-
     public static String colorYellow(String text) {
        return ANSI.Color.YELLOW + text + ANSI.Color.RESET;
     }
 
-    public static String colorWhite(String text) {
-        return ANSI.Color.WHITE + text + ANSI.Color.RESET;
+    public static String colorGrey(String text) {
+        return Color.GREY + text + ANSI.Color.RESET;
     }
 
     public static String colorBlack(String text) {
@@ -39,6 +32,7 @@ public class ANSI {
         BLACK("30m"),
         WHITE("97m"),
         OFF_WHITE("38;5;251m"),
+        GREY("38;5;247m"),
         BLUE("38;5;21m"),
         ORANGE("38;5;209m"),
         PURPLE("38;5;92m"),

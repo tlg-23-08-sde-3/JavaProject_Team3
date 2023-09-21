@@ -24,14 +24,6 @@ public class Game {
     private Player player;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
 
-    public static void main(String[] args) throws InterruptedException {
-        // TODO: Remove in final version
-        Account account = Account.createNewAccount("Kobi");
-        Player testPlayer = account.getPlayer();
-        Game game = new Game(testPlayer);
-        game.play();
-    }
-
     public Game(Player player) {
         setPlayer(player);
         board = new Board();
@@ -48,7 +40,6 @@ public class Game {
     private void displayPlayAgainPrompt() {
         /*
          * Ask if player want to play another game if player still has some balance in account.
-         * TODO: This logic could potentially be in the main controller.
          */
         if (player.getAccountBalance() > 0) {
             String continuePlayInput = prompter.prompt("Would you to play again (Y/N)? ", "[YyNn]", errorMessageInvalidEntry());
@@ -103,7 +94,6 @@ public class Game {
     private void promptUserToSelectBet() {
         boolean userWantsToPlaceBet = true;
         while (userWantsToPlaceBet) {
-            refreshScreen();
             Bet bet = betSelection();
             player.subtractAmount(bet.getChip().value());
             board.placeChips(bet.getOption().boardElement(), bet.getChip());
@@ -127,15 +117,22 @@ public class Game {
     }
 
     private Bet betSelection() {
+        BetType betType = null;
+        BetOption betOption = null;
+        Board.Chip chip = null;
 
         BetSelection betSelection = new BetSelection();
-        BetType betType = betSelection.betTypeSelection();
 
-        refreshScreen();
-        BetOption betOption = betSelection.betOptionSelection(betType);
+        while (chip == null) {
+            refreshScreen();
+            betType = betSelection.betTypeSelection();
 
-        refreshScreen();
-        Board.Chip chip = betSelection.selectChip(player);
+            refreshScreen();
+            betOption = betSelection.betOptionSelection(betType);
+
+            refreshScreen();
+            chip = betSelection.selectChip(player);
+        }
 
         return new Bet(betType, betOption, chip);
     }

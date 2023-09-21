@@ -20,7 +20,7 @@ public class Controller {
     }
 
     public void execute() throws Exception {
-//        welcome();
+        welcome();
 
         // Run until user selects exit at the login prompt.
         boolean gameOver = false;
