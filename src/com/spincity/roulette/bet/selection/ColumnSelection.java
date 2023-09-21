@@ -8,10 +8,8 @@ import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelec
 
 public class ColumnSelection extends BetOptionSelection {
 
-    private final Prompter prompter;
-
     public ColumnSelection(Prompter prompter) {
-        this.prompter = prompter;
+        super(prompter);
     }
 
     @Override

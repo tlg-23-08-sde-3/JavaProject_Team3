@@ -11,7 +11,7 @@ public class ColumnSelectionTest {
 
     @Test
     public void whenUserSelected_1_shouldReturn_red() throws Exception {
-        Prompter prompter = new Prompter(new Scanner("2\n"));
+        Prompter prompter = new Prompter(new Scanner("1\n"));
         ColumnSelection columnSelection = new ColumnSelection(prompter);
         columnSelection.select();
 

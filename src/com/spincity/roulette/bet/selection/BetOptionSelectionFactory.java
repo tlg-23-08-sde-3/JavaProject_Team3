@@ -6,21 +6,22 @@ import com.spincity.roulette.bet.BetType;
 import java.util.Scanner;
 
 public class BetOptionSelectionFactory {
+   public static Prompter prompter = new Prompter(new Scanner(System.in));
 
     public static BetOptionSelection getSelector(BetType betType) {
         switch (betType) {
             case SINGLE_NUMBER:
-                return new SingleNumberSelection(new Prompter(new Scanner(System.in)));
+                return new SingleNumberSelection(prompter);
             case COLOR:
-                return new ColorSelection(new Prompter(new Scanner(System.in)));
+                return new ColorSelection(prompter);
             case DOZEN:
-                return new DozenSelection(new Prompter(new Scanner(System.in)));
+                return new DozenSelection(prompter);
             case COLUMN:
-                return new ColumnSelection(new Prompter(new Scanner(System.in)));
+                return new ColumnSelection(prompter);
             case EVEN_ODD:
-                return new EvenOddSelection(new Prompter(new Scanner(System.in)));
+                return new EvenOddSelection(prompter);
             case HIGH_LOW:
-                return new HighLowSelection(new Prompter(new Scanner(System.in)));
+                return new HighLowSelection(prompter);
         }
 
         return null;
