@@ -70,7 +70,7 @@ public class RouletteWheel extends JFrame {
             while (isSpinning & (click != lastClick)) {
                 click++;
                 imageLabel.setIcon(images.get(++currentIndex));
-                Sleep.sleep(pause += 2);
+                Sleep.sleep(pause += 3);
                 if (currentIndex == 36) {  // end of the List, reset index
                     currentIndex = 0;
                 }
