@@ -13,7 +13,11 @@ import static com.spincity.roulette.utils.ANSI.colorRed;
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;
 
 public class BetSelection {
-    private final Prompter prompter = new Prompter(new Scanner(System.in));
+    private final Prompter prompter;
+
+    public BetSelection(Prompter prompter) {
+        this.prompter = prompter;
+    }
 
     /*
      * Select Bet Type
