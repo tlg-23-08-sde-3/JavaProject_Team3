@@ -11,6 +11,7 @@ import com.spincity.roulette.account.Player;
 import com.spincity.roulette.bet.selection.BetSelection;
 import com.spincity.roulette.spinner.RouletteWheel;
 import com.spincity.roulette.spinner.SpinnerNumber;
+import com.spincity.roulette.utils.ANSI;
 import com.spincity.roulette.utils.Sleep;
 
 import java.util.ArrayList;
@@ -100,9 +101,11 @@ public class Game {
             bets.add(bet);
 
             refreshScreen();
+            System.out.println(Color.YELLOW);
             System.out.println("***********************************************");
             System.out.println("**  Increase your odds by adding another bet **");
             System.out.println("***********************************************\n");
+            System.out.println(Color.RESET);
 
             if (player.getAccountBalance() > 0.0) {
                 String continueInput = prompter.prompt("Would you like to add another bet (Y/N): ", "[YyNn]", errorMessageInvalidEntry());
