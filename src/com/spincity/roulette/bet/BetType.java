@@ -13,7 +13,7 @@ public enum BetType {
     private final int multiplier;
     private final String menuText;
 
-    BetType(int multiplier, String menuText ) {
+    BetType(int multiplier, String menuText) {
         this.multiplier = multiplier;
         this.menuText = menuText;
     }

@@ -23,13 +23,13 @@ public class ColumnSelection extends BetOptionSelection {
         String columnInput = prompter.prompt("Select a column (1-3): ", "[1-3]", errorMessageInvalidSelection());
         switch (columnInput) {
             case "1":
-                 setBetOption(BetType.Column.COLUMN_1_ENDS_34);
+                setBetOption(BetType.Column.COLUMN_1_ENDS_34);
                 break;
             case "2":
-                 setBetOption(BetType.Column.COLUMN_2_ENDS_35);
+                setBetOption(BetType.Column.COLUMN_2_ENDS_35);
                 break;
             case "3":
-                 setBetOption(BetType.Column.COLUMN_3_ENDS_36);
+                setBetOption(BetType.Column.COLUMN_3_ENDS_36);
         }
 
         return getBetOption();

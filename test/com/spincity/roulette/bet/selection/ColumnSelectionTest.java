@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
+
 public class ColumnSelectionTest {
 
     @Test

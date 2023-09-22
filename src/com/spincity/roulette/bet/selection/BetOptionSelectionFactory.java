@@ -6,7 +6,7 @@ import com.spincity.roulette.bet.BetType;
 import java.util.Scanner;
 
 public class BetOptionSelectionFactory {
-   public static Prompter prompter = new Prompter(new Scanner(System.in));
+    public static Prompter prompter = new Prompter(new Scanner(System.in));
 
     public static BetOptionSelection getSelector(BetType betType) {
         switch (betType) {

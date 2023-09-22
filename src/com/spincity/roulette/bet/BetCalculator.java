@@ -3,7 +3,7 @@ package com.spincity.roulette.bet;
 import com.spincity.roulette.spinner.SpinnerNumber;
 
 public abstract class BetCalculator {
-    private Bet bet;
+    private final Bet bet;
 
     public BetCalculator(Bet bet) {
         this.bet = bet;

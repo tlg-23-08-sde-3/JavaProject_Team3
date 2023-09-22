@@ -3,15 +3,11 @@ package com.spincity.roulette.utils;
 public class ANSI {
 
     public static String colorYellow(String text) {
-       return ANSI.Color.YELLOW + text + ANSI.Color.RESET;
+        return ANSI.Color.YELLOW + text + ANSI.Color.RESET;
     }
 
     public static String colorGrey(String text) {
         return Color.GREY + text + ANSI.Color.RESET;
-    }
-
-    public static String colorBlack(String text) {
-        return ANSI.Color.BLACK + text + ANSI.Color.RESET;
     }
 
     public static String colorRed(String text) {
@@ -40,7 +36,6 @@ public class ANSI {
         BRIGHT_MAGENTA("38;5;126m");
 
 
-
         private final String value;
 
         Color(String ansiCode) {
@@ -48,7 +43,7 @@ public class ANSI {
         }
 
         public String getValue() {
-                return value;
+            return value;
         }
 
         @Override

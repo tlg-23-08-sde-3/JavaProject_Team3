@@ -11,10 +11,6 @@ public class Player {
         setAccountBalance(2500.0); // start the player with default play money of $2500
     }
 
-    public Player(double accountBalance) {
-        setAccountBalance(accountBalance);
-    }
-
     public Player(String Name, double accountBalance) {
         setName(Name);
         setAccountBalance(accountBalance);
@@ -45,7 +41,7 @@ public class Player {
     }
 
     public void addAmount(double amount) {
-       setAccountBalance(this.getAccountBalance() + amount);
+        setAccountBalance(this.getAccountBalance() + amount);
     }
 
     public void subtractAmount(double amount) {

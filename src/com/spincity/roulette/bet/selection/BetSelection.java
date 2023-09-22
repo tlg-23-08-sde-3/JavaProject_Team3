@@ -6,8 +6,6 @@ import com.spincity.roulette.account.Player;
 import com.spincity.roulette.bet.BetOption;
 import com.spincity.roulette.bet.BetType;
 
-import java.util.Scanner;
-
 import static com.spincity.roulette.utils.ANSI.colorGrey;
 import static com.spincity.roulette.utils.ANSI.colorRed;
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;

@@ -7,20 +7,20 @@ import java.awt.event.ActionListener;
 
 public class SplashScreen {
 
-    private JFrame frame;
-    private JLabel imageLabel;
-    private ImageIcon[] imageIcons;
+    private final JFrame frame;
+    private final JLabel imageLabel;
+    private final ImageIcon[] imageIcons;
     private int currentImageIndex;
-    private Timer timer;
+    private final Timer timer;
     private int numOfImages;
     private boolean needsLoop;
-    private int imageFrameTime = 250;
-    private int frameLengthTime = 5000;
 
     public SplashScreen(String imageFolderName) {
         // Initialize the JFrame
         frame = new JFrame();
 
+        int imageFrameTime = 250;
+        int frameLengthTime = 5000;
         switch (imageFolderName) {
             case "Welcome":
                 numOfImages = 50;
@@ -72,8 +72,7 @@ public class SplashScreen {
                 }
             });
 
-        }
-        else {
+        } else {
             timer = new Timer(imageFrameTime, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -81,11 +80,10 @@ public class SplashScreen {
                     currentImageIndex = (currentImageIndex + 1);
                     // Set the new image on the JLabel
                     if (currentImageIndex == numOfImages) {
-                        imageLabel.setIcon(imageIcons[currentImageIndex-1]);
+                        imageLabel.setIcon(imageIcons[currentImageIndex - 1]);
                         timer.stop();
-                    }
-                    else {
-                        imageLabel.setIcon(imageIcons[(currentImageIndex-1)]);
+                    } else {
+                        imageLabel.setIcon(imageIcons[(currentImageIndex - 1)]);
                     }
                 }
             });
@@ -111,9 +109,4 @@ public class SplashScreen {
             }
         });
     }
-
-//    public static void main(String[] args) {
-//        SplashScreen app = new SplashScreen("Welcome");
-//        app.run();
-//    }
 }
