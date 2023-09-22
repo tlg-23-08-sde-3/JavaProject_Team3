@@ -7,7 +7,7 @@ public class Bet {
     private BetOption option;
     private Board.Chip chip;
 
-    public Bet () {
+    public Bet() {
 
     }
 

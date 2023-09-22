@@ -56,7 +56,7 @@ public class RouletteWheel extends JFrame {
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
-        spin();
+            spin();
         }
     }
 
@@ -107,7 +107,7 @@ public class RouletteWheel extends JFrame {
     }
 
     private void loadImages() {
-        for (int i = 0; i <= 36;  i++) {
+        for (int i = 0; i <= 36; i++) {
             images.add(i, new ImageIcon(baseFileName + i + fileSuffix));
         }
     }
@@ -117,11 +117,6 @@ public class RouletteWheel extends JFrame {
         new Thread(new Spinner(), "Spinner").start();
         startButton.setEnabled(false);
     }
-
-//    private static void sleep(long millis) {
-//        try { Thread.sleep(millis); }
-//        catch (InterruptedException ignored) { }
-//    }
 
     private void setFrameOptions() {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -133,9 +128,4 @@ public class RouletteWheel extends JFrame {
         setLocationRelativeTo(null);  // places it in center of screen
         setVisible(true);
     }
-
-//    public static void main(String[] args) {
-//        new RouletteWheel();
-//    }
-
 }

@@ -41,7 +41,7 @@ public class EvenOddBetTest {
 
     // Bet : Even , Spinner : 2
     @Test
-    public void whenEvenBet_isWin () {
+    public void whenEvenBet_isWin() {
         Bet bet = new Bet(BetType.EVEN_ODD, BetType.EvenOdd.EVEN, Board.Chip.CHIP_100);
         SpinnerNumber spinnerNumber = SpinnerNumber.TWO;
         EvenOddBet evenOddBet = new EvenOddBet(bet);
@@ -51,7 +51,7 @@ public class EvenOddBetTest {
 
     // Bet : Even , Spinner : 0
     @Test
-    public void whenBet_isEven_andSpinnerZero_isLost () {
+    public void whenBet_isEven_andSpinnerZero_isLost() {
         Bet bet = new Bet(BetType.EVEN_ODD, BetType.EvenOdd.EVEN, Board.Chip.CHIP_100);
         SpinnerNumber spinnerNumber = SpinnerNumber.ZERO;
         EvenOddBet evenOddBet = new EvenOddBet(bet);
@@ -61,7 +61,7 @@ public class EvenOddBetTest {
 
     // Bet : Odd , Spinner : 0
     @Test
-    public void whenBet_isOdd_andSpinnerZero_isLost () {
+    public void whenBet_isOdd_andSpinnerZero_isLost() {
         Bet bet = new Bet(BetType.EVEN_ODD, BetType.EvenOdd.ODD, Board.Chip.CHIP_100);
         SpinnerNumber spinnerNumber = SpinnerNumber.ZERO;
         EvenOddBet evenOddBet = new EvenOddBet(bet);

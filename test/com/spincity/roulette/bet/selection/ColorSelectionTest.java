@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import static com.spincity.roulette.utils.ErrorMessages.errorMessageInvalidSelection;
 import static org.junit.Assert.*;
+
 public class ColorSelectionTest {
 
     @Test
